@@ -55,7 +55,7 @@ theme:
         name: Switch to light mode
 
 extra_css:
-  - stylesheets/minimal-editorial-v2.css
+  - stylesheets/minimal-editorial-v3.css
 
 extra_javascript:
   - javascripts/top-toc.js

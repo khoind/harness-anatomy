@@ -34,22 +34,65 @@ The [glossary](glossary.md) gives the atlas’s preferred terms and upstream syn
 
 A project need not expose all nine as separate modules. The list is a comparison frame: when two concerns share one implementation object, ask whether they still have different semantics and lifetimes.
 
-## Identities worth keeping separate
+## One interaction, several different lifetimes
 
-Vocabulary varies upstream, so compare semantics rather than names.
+Suppose you tell a coding agent:
 
-| Identity | Meaning | Symptom when conflated |
+> Rename `foo` to `bar` and update the tests.
+
+That looks like one action from the outside. Inside the harness, several different things begin and end at different times. Keeping them separate makes retry, cancellation, persistence, and debugging much easier to reason about.
+
+### Work lifetimes
+
+Think of these as nested scopes of work:
+
+```text
+session
+└── run
+    └── turn
+        └── provider request
+            └── physical attempt
+```
+
+- The **session** is the long-lived conversation or task history. You may issue many instructions in the same session.
+- The **run** is the work caused by this instruction: “rename `foo` to `bar` and update the tests.” When that work finishes, the session can remain open for your next instruction.
+- A **turn** is one model response together with the effects it asks for. The model might first inspect files, then receive those results and take another turn to edit them.
+- A **provider request** is one exact payload sent to the model provider. It includes the context chosen for that call.
+- A **physical attempt** is one transmission of that exact request. If the network times out and the harness sends the same payload again, that is still one request but two attempts.
+
+This distinction matters because “try again” can mean two different things. Sending the identical payload again is another **attempt**. Rebuilding the context and asking the model again creates a new **request**, even if the user instruction has not changed.
+
+| Work lifetime | In the example | What goes wrong if it is confused with its neighbors |
 | --- | --- | --- |
-| Session/thread | long-lived conversational or task history | closing a client or cancelling one run deletes durable identity |
-| Run | one response-to-input lifecycle, including pauses | the next run inherits dead cancellation state or counters |
-| Logical turn/round | one accepted model response plus its requested effects | retries and tool loops are budgeted as if they were new user turns |
-| Provider request | one fixed provider payload | reconstructed context is silently labelled a retry |
-| Physical attempt | one transmission of a provider request | usage, latency, and provider failures are misreported |
-| Tool operation | one proposed effect with a stable call identity | replay or transport retry executes an effect twice |
-| Event/fact | one immutable occurrence | mutable UI state becomes the only audit trail |
-| Projection | a view reconstructed from facts | a renderer failure corrupts operational truth |
+| Session | the continuing conversation with the coding agent | cancelling one piece of work accidentally destroys the whole history |
+| Run | all work caused by the rename instruction | the next instruction inherits stale cancellation state or counters |
+| Turn | one model response plus the effects it requests | tool loops and retries get counted as new user instructions |
+| Provider request | one exact model payload | changed context is mislabeled as a retry of the same request |
+| Physical attempt | one transmission of that payload | latency, usage, and provider failures are counted incorrectly |
 
-DeepChat states the request/attempt distinction most explicitly. Codex’s thread/rollout split, Pi’s event sequence, Kimi Code’s event bus, and Kun’s runtime-event reducer expose adjacent parts of the same design.
+### World and state lifetimes
+
+A second group describes what the agent tries to do and how the system remembers it:
+
+```text
+tool operation → fact/event → projection
+```
+
+Suppose the model asks to run the test suite.
+
+- The **tool operation** is that proposed test command, with its own stable identity. A retry of the surrounding model request should not accidentally execute it twice.
+- A **fact/event** records something that actually happened: for example, the command started, finished with exit code 1, or was denied.
+- A **projection** is a view built from those facts: the terminal line, progress spinner, GUI card, remote notification, or reconstructed transcript shown to the user.
+
+The key idea is that the screen is not the event. If a renderer crashes after the command completed, the durable fact should still say what happened. The interface can then rebuild the view.
+
+| State lifetime | In the example | What goes wrong if it is confused with its neighbors |
+| --- | --- | --- |
+| Tool operation | “run the tests” with one stable call identity | replay or transport retry executes the command twice |
+| Fact/event | “tests finished with exit code 1” | mutable interface state becomes the only audit trail |
+| Projection | the terminal or GUI rendering of that result | a rendering failure corrupts what the system believes happened |
+
+Vocabulary varies across projects. The names matter less than the separations. DeepChat states the request/attempt distinction most explicitly; Codex’s thread/rollout split, Pi’s event sequence, Kimi Code’s event bus, and Kun’s runtime-event reducer expose adjacent parts of the same design.
 
 ## Four architecture families, not one leaderboard
 

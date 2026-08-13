@@ -33,9 +33,10 @@ nav:
 
 theme:
   name: material
-  custom_dir: overrides
   features:
     - navigation.sections
+    - navigation.tabs
+    - navigation.tabs.sticky
     - navigation.top
     - navigation.tracking
     - search.highlight
@@ -55,7 +56,7 @@ theme:
         name: Switch to light mode
 
 extra_css:
-  - stylesheets/jupyter-high-contrast.css
+  - stylesheets/minimal-editorial.css
 
 plugins:
   - search

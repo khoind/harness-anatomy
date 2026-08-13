@@ -2,7 +2,7 @@
 
 Start with the [worked walkthrough](walkthrough.md) if the terms on this page are new.
 
-The ten systems differ in scale, but their inner work can be described with one recurring machine:
+The thirteen systems differ in scale, but the inner harnesses can be described with one recurring machine; bb and Multica deliberately sit around that machine:
 
 ```mermaid
 flowchart TD
@@ -96,11 +96,12 @@ Vocabulary varies across projects. The names matter less than the separations. D
 
 ## The projects operate at different scales
 
-The ten projects are not all trying to be the same kind of thing. Before comparing features, first ask **what level of the system the project is responsible for**.
+The thirteen projects are not all trying to be the same kind of thing. Before comparing features, first ask **what level of the system the project is responsible for**.
 
 - **Pi** is closest to a reusable agent engine. Its core loop can be embedded inside another product.
-- **Codex, OpenCode, Grok Build, Kimi Code, and MiMo Code** are complete coding-agent systems. They combine the loop with tools, persistence, policy, and one or more user-facing or programmatic interfaces.
+- **Codex, OpenCode, Grok Build, Kimi Code, DeepSeek Harness, MiMo Code, and Prime Agent** are complete coding-agent systems. They combine the loop with tools, persistence, policy, and one or more user-facing or programmatic interfaces; DeepSeek makes that combination runtime-configurable, while Prime makes persistent Python the primary model-facing medium.
 - **Kun, DeepChat, and CodePilot** go further into desktop-product concerns such as persistent GUI state, remote interaction, computer use, and multiple ways for humans to interact with the same agent.
+- **bb** is an agent development environment and control plane around foreign provider harnesses. Its durable threads, hosts, workspaces, and plugins are product authority; the provider still owns the inner model loop.
 - **Multica** sits outside other agents. It starts and supervises coding-agent programs such as Codex or OpenCode rather than running the underlying language model loop itself.
 
 This difference in scale changes what each project can teach us.
@@ -120,7 +121,7 @@ The practical rule is simple: **compare projects at the level where their respon
 - **Compaction as destructive rewrite.** A summary remains, but the original evidence and its provenance disappear.
 - **UI owns execution.** Headless, remote, and embedded clients each develop a different loop and different behavior.
 - **One giant “agent state.”** Session, run, request, provider attempt, operation, and projection lifetimes bleed into one another.
-- **Feature inheritance mistaken for convergence.** MiMo Code derives from OpenCode; shared code is one lineage, not two independent architectural votes.
+- **Feature inheritance mistaken for convergence.** MiMo Code derives from OpenCode and Prime Agent from Pi; shared code is one lineage, not two independent architectural votes.
 
 ## What the common anatomy does not prove
 

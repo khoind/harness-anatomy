@@ -16,9 +16,12 @@ OpenCode is a strong specimen for server-first composition, per-turn capability 
 
 ## Read these first
 
-1. [Current session loop](https://github.com/anomalyco/opencode/blob/cc4b45612974f735ddec46009ede07729511fba4/packages/opencode/src/session/prompt.ts) — the production orchestration path.
-2. [Session processor](https://github.com/anomalyco/opencode/blob/cc4b45612974f735ddec46009ede07729511fba4/packages/opencode/src/session/processor.ts) — reduction of model streams into message and tool state.
-3. [V2 session specification](https://github.com/anomalyco/opencode/blob/cc4b45612974f735ddec46009ede07729511fba4/specs/v2/session.md) — the newer service and durability direction.
+Read the live v1 system before the v2 design. They are different evidence classes at this snapshot, not one finished architecture.
+
+1. **[Session API handler](https://github.com/anomalyco/opencode/blob/cc4b45612974f735ddec46009ede07729511fba4/packages/opencode/src/server/routes/instance/httpapi/handlers/session.ts) and [event handler](https://github.com/anomalyco/opencode/blob/cc4b45612974f735ddec46009ede07729511fba4/packages/opencode/src/server/routes/instance/httpapi/handlers/event.ts).** *What they are:* the service boundary through which terminal, desktop, web, and automation callers drive and observe sessions. *Why first:* they establish that OpenCode is server/session-first, not merely a loop in a CLI.
+2. **[Current session loop](https://github.com/anomalyco/opencode/blob/cc4b45612974f735ddec46009ede07729511fba4/packages/opencode/src/session/prompt.ts).** *What it is:* the production v1 orchestrator for agent/model selection, context, tool assembly, branching, overflow, compaction, and stop decisions. *Why second:* it shows how much is rebuilt from current configuration on every turn.
+3. **[Session processor](https://github.com/anomalyco/opencode/blob/cc4b45612974f735ddec46009ede07729511fba4/packages/opencode/src/session/processor.ts).** *What it is:* the reduction of stream deltas into persisted text/reasoning/tool parts, workspace snapshots and patches, retry state, and cleanup. *Why now:* it connects ephemeral provider output to durable product state.
+4. **[V2 session specification](https://github.com/anomalyco/opencode/blob/cc4b45612974f735ddec46009ede07729511fba4/specs/v2/session.md).** *What it is:* the intended durable admission, safe-boundary promotion, tool intent, context epoch, and event-projection model, including a parity checklist. *Why last:* compare its explicit gaps with v1 instead of attributing planned semantics to the running path.
 
 ## System shape
 

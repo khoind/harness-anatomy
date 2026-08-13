@@ -16,9 +16,10 @@ DeepChat is the clearest architecture reference in this corpus for temporal corr
 
 ## Read these first
 
-1. [Agent-system guide](https://github.com/ThinkInAIXYZ/deepchat/blob/aa129db04f1b3319276480682460e51458b84558/docs/architecture/agent-system.md) — the identity and backend model.
-2. [Tape system](https://github.com/ThinkInAIXYZ/deepchat/blob/aa129db04f1b3319276480682460e51458b84558/docs/architecture/tape-system.md) — authoritative facts and derived projections.
-3. [Tool system](https://github.com/ThinkInAIXYZ/deepchat/blob/aa129db04f1b3319276480682460e51458b84558/docs/architecture/tool-system.md) — operation lifecycle and centralized permission review.
+1. **[Agent-system guide](https://github.com/ThinkInAIXYZ/deepchat/blob/aa129db04f1b3319276480682460e51458b84558/docs/architecture/agent-system.md).** *What it is:* the ontology of Session, instance, Run, logical request, physical attempt, and native versus ACP backends. *Why first:* without these identities, retry and backend code looks like one uniform loop when it is deliberately not.
+2. **[`LoopRun`](https://github.com/ThinkInAIXYZ/deepchat/blob/aa129db04f1b3319276480682460e51458b84558/src/main/agent/deepchat/loop/loopRun.ts) and [context coordinator](https://github.com/ThinkInAIXYZ/deepchat/blob/aa129db04f1b3319276480682460e51458b84558/src/main/agent/deepchat/loop/contextCoordinator.ts).** *What they are:* the actual temporal counters, request construction, output-commit boundary, transient retry, and changed-request recovery. *Why second:* they make the guide’s vocabulary executable at the decisive failure boundary.
+3. **[Tape system](https://github.com/ThinkInAIXYZ/deepchat/blob/aa129db04f1b3319276480682460e51458b84558/docs/architecture/tape-system.md).** *What it is:* context facts, provider attempts, strict execution journal, contracts, and derived projections. *Why now:* it explains what is authoritative before transaction and idempotency details appear.
+4. **[Execution journal](https://github.com/ThinkInAIXYZ/deepchat/blob/aa129db04f1b3319276480682460e51458b84558/src/main/tape/application/executionJournalService.ts) and [loop runner](https://github.com/ThinkInAIXYZ/deepchat/blob/aa129db04f1b3319276480682460e51458b84558/src/main/agent/deepchat/runtime/deepChatLoopRunner.ts).** *What they are:* prerequisites, identity-collision checks, idempotent repeats, transactions, and fact-before-effect/projection ordering. *Why last:* together they prove Tape is execution authority, not merely a log.
 
 ## System shape
 

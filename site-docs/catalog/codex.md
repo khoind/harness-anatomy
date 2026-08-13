@@ -16,9 +16,10 @@ Codex is the strongest specimen here for a production loop whose policy, event p
 
 ## Read these first
 
-1. [Submission and event protocol](https://github.com/openai/codex/blob/902bd9e06b3ecb32cbf7f8e64cd23b956be3e7fe/codex-rs/protocol/src/protocol.rs) — the client/session boundary.
-2. [Turn runner](https://github.com/openai/codex/blob/902bd9e06b3ecb32cbf7f8e64cd23b956be3e7fe/codex-rs/core/src/session/turn.rs) — the production model/tool lifecycle.
-3. [Tool orchestrator](https://github.com/openai/codex/blob/902bd9e06b3ecb32cbf7f8e64cd23b956be3e7fe/codex-rs/core/src/tools/orchestrator.rs) — approval, sandbox selection, execution attempts, and escalation.
+1. **[App-server guide](https://github.com/openai/codex/blob/902bd9e06b3ecb32cbf7f8e64cd23b956be3e7fe/codex-rs/app-server/README.md).** *What it is:* the client lifecycle and thread/turn/item vocabulary used to start, resume, fork, and steer work. *Why first:* it gives a navigable product protocol before the large Rust enums and internal engine.
+2. **[Submission and event protocol](https://github.com/openai/codex/blob/902bd9e06b3ecb32cbf7f8e64cd23b956be3e7fe/codex-rs/protocol/src/protocol.rs).** *What it is:* typed submissions, operations, events, approvals, and sandbox policies with correlation identities. *Why second:* it shows that authorization and containment are different concepts at the public boundary.
+3. **[Turn runner](https://github.com/openai/codex/blob/902bd9e06b3ecb32cbf7f8e64cd23b956be3e7fe/codex-rs/core/src/session/turn.rs).** *What it is:* pre-compaction, exact step context, model streaming, tool futures, steering, and stop hooks for one production turn. *Why now:* the protocol names acquire concrete lifecycle and ordering.
+4. **[Tool plan](https://github.com/openai/codex/blob/902bd9e06b3ecb32cbf7f8e64cd23b956be3e7fe/codex-rs/core/src/tools/spec_plan.rs) → [router](https://github.com/openai/codex/blob/902bd9e06b3ecb32cbf7f8e64cd23b956be3e7fe/codex-rs/core/src/tools/router.rs) → [orchestrator](https://github.com/openai/codex/blob/902bd9e06b3ecb32cbf7f8e64cd23b956be3e7fe/codex-rs/core/src/tools/orchestrator.rs).** *What they are:* per-step capability assembly, canonical invocation, then approval/sandbox/execution attempts. *Why last:* the sequence reveals the staged-effect design better than any one file alone.
 
 ## System shape
 

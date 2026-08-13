@@ -51,7 +51,7 @@ This is better than beginning with “DeepChat has an attempt object; should we 
 
 Start with [DeepChat](../catalog/deepchat.md), where run, request, attempt, and tool-operation identities are explicit. Use [Codex](../catalog/codex.md) as a counterweight for durable thread/rollout facts and mature retry policy.
 
-The [comparison page](comparison.md) tells you why these two are relevant. Their catalog cards give three first source links before the deeper routes.
+The [comparison page](comparison.md) tells you why these two are relevant. Their catalog cards give an annotated first reading sequence before the deeper routes.
 
 ### 3. Separate observation from inference
 
@@ -90,7 +90,7 @@ This prevents the atlas from becoming an excuse to accumulate other projects’ 
 1. Begin with a concrete failure, guarantee, or design decision.
 2. Pick one first specimen and one counterweight from [comparison.md](comparison.md).
 3. Read each card’s mental model and “What to notice.”
-4. Inspect the three first source links, then follow the deeper [source-reading path](reading-paths.md) only as needed.
+4. Inspect the card’s annotated first source sequence, then follow the deeper [source-reading path](reading-paths.md) only as needed.
 5. Write observations before interpretations.
 6. Form one falsifiable hypothesis.
 7. Hold model, task, initial context, capability set, policy, and scoring stable where practical.

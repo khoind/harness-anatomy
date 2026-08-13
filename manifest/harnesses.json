@@ -3,6 +3,28 @@
   "reviewed_at": "2026-08-13",
   "projects": [
     {
+      "slug": "bb",
+      "name": "bb",
+      "repository": "get-bb/bb",
+      "url": "https://github.com/get-bb/bb",
+      "branch": "main",
+      "reviewed_ref": "596aab4298e6d1b1c3c1a31c24d915c9f9e30bef",
+      "license": "MIT",
+      "source_class": "open-source",
+      "role": "agent-operated development environment and distributed harness control plane",
+      "language": "TypeScript",
+      "entrypoints": [
+        {"concern": "vision", "path": "docs/VISION.md"},
+        {"concern": "system topology", "path": "docs/system-overview.md"},
+        {"concern": "agent runtime", "path": "packages/agent-runtime/src/runtime.ts"},
+        {"concern": "provider adapters", "path": "packages/agent-runtime/src/provider-adapter.ts"},
+        {"concern": "server/client contract", "path": "packages/server-contract/src/api/threads.ts"},
+        {"concern": "server/host contract", "path": "packages/host-daemon-contract/src/commands.ts"},
+        {"concern": "host runtime", "path": "apps/host-daemon/src/runtime-manager.ts"},
+        {"concern": "plugin authoring", "path": "apps/server/src/services/skills/builtin-skills/bb-plugin-authoring/SKILL.md"}
+      ]
+    },
+    {
       "slug": "codepilot",
       "name": "CodePilot",
       "repository": "op7418/CodePilot",
@@ -21,7 +43,8 @@
         {"concern": "provider resolution", "path": "src/lib/provider-resolver.ts"},
         {"concern": "permissions", "path": "src/lib/permission-checker.ts"},
         {"concern": "remote approval", "path": "src/lib/bridge/permission-broker.ts"},
-        {"concern": "checkpoints", "path": "src/lib/run-checkpoint.ts"}
+        {"concern": "partial-output persistence", "path": "src/lib/chat-collect-stream-response.ts"},
+        {"concern": "in-memory file rewind", "path": "src/lib/file-checkpoint.ts"}
       ]
     },
     {
@@ -61,10 +84,33 @@
         {"concern": "architecture", "path": "docs/architecture/agent-system.md"},
         {"concern": "loop", "path": "src/main/agent/deepchat/loop/loopRun.ts"},
         {"concern": "loop ports", "path": "src/main/agent/deepchat/loop/ports.ts"},
-        {"concern": "durable tape", "path": "src/main/session/data/tape.ts"},
+        {"concern": "tape architecture", "path": "docs/architecture/tape-system.md"},
+        {"concern": "execution journal", "path": "src/main/tape/application/executionJournalService.ts"},
         {"concern": "event contract", "path": "src/shared/types/core/agent-events.ts"},
         {"concern": "tools", "path": "docs/architecture/tool-system.md"},
         {"concern": "permissions", "path": "src/main/tool/permission/toolPermissionBroker.ts"}
+      ]
+    },
+    {
+      "slug": "deepseek-harness",
+      "name": "DeepSeek Harness",
+      "repository": "deepseek-ai/deepseek-harness",
+      "url": "https://github.com/deepseek-ai/deepseek-harness",
+      "branch": "master",
+      "reviewed_ref": "47f943859bef60e4160492346772ded9b24f765a",
+      "license": "MIT",
+      "source_class": "open-source",
+      "role": "runtime-configured plugin microkernel for coding agents",
+      "language": "TypeScript",
+      "entrypoints": [
+        {"concern": "architecture", "path": "docs/architecture.md"},
+        {"concern": "assembled base profile", "path": "packages/bundle/base/cordis.patch.yml"},
+        {"concern": "default agent loop", "path": "packages/core/agent-loop/src/agent.ts"},
+        {"concern": "session log", "path": "packages/core/session/src/index.ts"},
+        {"concern": "model-visible surface", "path": "packages/core/session/src/surface.ts"},
+        {"concern": "tool pipeline", "path": "packages/core/tools/src/index.ts"},
+        {"concern": "agent scopes", "path": "packages/core/scope/src/index.ts"},
+        {"concern": "JSONL persistence", "path": "packages/session/session-persistence-jsonl/README.md"}
       ]
     },
     {
@@ -83,8 +129,9 @@
         {"concern": "agent", "path": "crates/codegen/xai-grok-agent/src/agent.rs"},
         {"concern": "tool bridge", "path": "crates/codegen/xai-grok-tools/src/bridge.rs"},
         {"concern": "permissions", "path": "crates/codegen/xai-grok-workspace/src/permission/manager/request_classification.rs"},
-        {"concern": "session actor", "path": "crates/codegen/xai-chat-state/src/actor/mod.rs"},
-        {"concern": "subagent prompts", "path": "crates/codegen/xai-grok-agent/src/prompt/subagent_prompts.rs"}
+        {"concern": "session orchestration", "path": "crates/codegen/xai-grok-shell/src/session/acp_session.rs"},
+        {"concern": "chat-state owner", "path": "crates/codegen/xai-chat-state/src/actor/mod.rs"},
+        {"concern": "JSONL storage", "path": "crates/codegen/xai-grok-shell/src/session/storage/jsonl/mod.rs"}
       ]
     },
     {
@@ -128,7 +175,7 @@
         {"concern": "context compaction", "path": "kun/src/loop/context-compactor.ts"},
         {"concern": "thread persistence", "path": "kun/src/adapters/file/file-thread-store.ts"},
         {"concern": "semantic events", "path": "kun/src/services/runtime-event-recorder.ts"},
-        {"concern": "extension boundary", "path": "docs/extensions/architecture.md"}
+        {"concern": "extension boundary", "path": "docs/extensions/architecture.en.md"}
       ]
     },
     {
@@ -168,7 +215,8 @@
       "entrypoints": [
         {"concern": "outer daemon loop", "path": "server/internal/daemon/daemon.go"},
         {"concern": "runtime adapters", "path": "server/pkg/agent/agent.go"},
-        {"concern": "execution isolation", "path": "server/internal/daemon/execenv/isolation.go"},
+        {"concern": "killable environment preparation", "path": "server/internal/daemon/execenv/isolation.go"},
+        {"concern": "worktree preparation", "path": "server/internal/daemon/execenv/local_worktree.go"},
         {"concern": "runtime protocol", "path": "server/pkg/protocol/events.go"},
         {"concern": "event bus", "path": "server/internal/events/bus.go"},
         {"concern": "trace projection", "path": "packages/views/common/task-transcript/trace-event-presenter.ts"}
@@ -216,6 +264,29 @@
         {"concern": "tool assembly", "path": "packages/coding-agent/src/core/tools/index.ts"},
         {"concern": "extensions", "path": "packages/coding-agent/src/core/extensions/runner.ts"},
         {"concern": "compaction", "path": "packages/coding-agent/docs/compaction.md"}
+      ]
+    },
+    {
+      "slug": "prime-agent",
+      "name": "Prime Agent",
+      "repository": "PrimeIntellect-ai/prime-agent",
+      "url": "https://github.com/PrimeIntellect-ai/prime-agent",
+      "branch": "main",
+      "reviewed_ref": "7787f07415d843b9a800f6a4720e0c739bd608e5",
+      "license": "MIT",
+      "source_class": "open-source",
+      "role": "persistent Python and recursive-language-model coding harness",
+      "language": "TypeScript and Python",
+      "lineage": "hard fork of Pi",
+      "entrypoints": [
+        {"concern": "architecture", "path": "packages/coding-agent/docs/architecture.md"},
+        {"concern": "recursive language model", "path": "packages/coding-agent/docs/rlm.md"},
+        {"concern": "RLM runtime", "path": "packages/coding-agent/docs/rlm-runtime.md"},
+        {"concern": "model-facing IPython tool", "path": "packages/coding-agent/src/core/tools/ipython.ts"},
+        {"concern": "persistent kernel", "path": "packages/coding-agent/src/core/kernel/index.ts"},
+        {"concern": "continual refinement", "path": "packages/coding-agent/src/core/refinement/refinement.ts"},
+        {"concern": "daemon", "path": "packages/coding-agent/docs/daemon.md"},
+        {"concern": "Python child harness", "path": "prime-agent-runtime/src/rlm/harness.py"}
       ]
     }
   ]

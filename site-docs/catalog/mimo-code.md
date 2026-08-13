@@ -16,9 +16,12 @@ MiMo Code is the corpus's strongest specimen for persistent project memory and l
 
 ## Read these first
 
-1. [Session boundary](https://github.com/XiaomiMiMo/MiMo-Code/blob/42dcbf34f6b2be012d66bb54adf3d0d7795b83d9/packages/opencode/src/session/boundary.ts) — where long work is partitioned.
-2. [Project memory service](https://github.com/XiaomiMiMo/MiMo-Code/blob/42dcbf34f6b2be012d66bb54adf3d0d7795b83d9/packages/opencode/src/memory/service.ts) — explicit storage and retrieval around the loop.
-3. [Session checkpoint](https://github.com/XiaomiMiMo/MiMo-Code/blob/42dcbf34f6b2be012d66bb54adf3d0d7795b83d9/packages/opencode/src/session/checkpoint.ts) — recoverable progress over time.
+Read MiMo as a derivative: establish the inherited chassis, then isolate the long-horizon additions.
+
+1. **[Repository README](https://github.com/XiaomiMiMo/MiMo-Code/blob/42dcbf34f6b2be012d66bb54adf3d0d7795b83d9/README.md).** *What it is:* the project map and explicit OpenCode-fork lineage. *Why first:* it prevents shared loop/provider/plugin behavior from being misattributed as an independent MiMo invention.
+2. **[Project memory service](https://github.com/XiaomiMiMo/MiMo-Code/blob/42dcbf34f6b2be012d66bb54adf3d0d7795b83d9/packages/opencode/src/memory/service.ts) and [memory tool](https://github.com/XiaomiMiMo/MiMo-Code/blob/42dcbf34f6b2be012d66bb54adf3d0d7795b83d9/packages/opencode/src/tool/memory.ts).** *What they are:* Markdown as source of truth, FTS5 as a reconciled index, and a bounded model-facing search interface. *Why second:* they separate inspectable durable knowledge from its intentionally narrow retrieval capability.
+3. **[Session boundary](https://github.com/XiaomiMiMo/MiMo-Code/blob/42dcbf34f6b2be012d66bb54adf3d0d7795b83d9/packages/opencode/src/session/boundary.ts) → [checkpoint](https://github.com/XiaomiMiMo/MiMo-Code/blob/42dcbf34f6b2be012d66bb54adf3d0d7795b83d9/packages/opencode/src/session/checkpoint.ts).** *What they are:* protected-tail selection followed by an asynchronous writer, watermark advancement, task/memory capture, and overflow rebuild. *Why now:* their ordering explains which work is safe to summarize and why failed checkpoint writers remain recapturable.
+4. **[Actor schema](https://github.com/XiaomiMiMo/MiMo-Code/blob/42dcbf34f6b2be012d66bb54adf3d0d7795b83d9/packages/opencode/src/actor/schema.ts), [spawn](https://github.com/XiaomiMiMo/MiMo-Code/blob/42dcbf34f6b2be012d66bb54adf3d0d7795b83d9/packages/opencode/src/actor/spawn.ts), and [inbox](https://github.com/XiaomiMiMo/MiMo-Code/blob/42dcbf34f6b2be012d66bb54adf3d0d7795b83d9/packages/opencode/src/inbox/inbox.ts).** *What they are:* actor identity, detached lifecycle, and addressed durable delivery. *Why last:* the sequence makes concurrency and the documented duplicate-delivery crash window concrete.
 
 ## System shape
 

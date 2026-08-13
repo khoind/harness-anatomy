@@ -16,9 +16,12 @@ Pi is the best first specimen because its generic runtime is small enough to und
 
 ## Read these first
 
-1. [Generic agent loop](https://github.com/earendil-works/pi/blob/581d75a89cea21e50d6a26df840352f94427f633/packages/agent/src/agent-loop.ts) — the recurring model/effect cycle.
-2. [Event and message types](https://github.com/earendil-works/pi/blob/581d75a89cea21e50d6a26df840352f94427f633/packages/agent/src/types.ts) — the vocabulary carried through the loop.
-3. [Coding-session wrapper](https://github.com/earendil-works/pi/blob/581d75a89cea21e50d6a26df840352f94427f633/packages/coding-agent/src/core/agent-session.ts) — the product machinery added around the generic core.
+Read these in order to separate the reusable protocol-like core from the coding product built around it.
+
+1. **[Agent package guide](https://github.com/earendil-works/pi/blob/581d75a89cea21e50d6a26df840352f94427f633/packages/agent/README.md).** *What it is:* the short definition of runs, turns, application messages, lifecycle events, and parallel-tool ordering. *Why first:* it states what the small core promises—and what it intentionally leaves to an embedding application.
+2. **[Generic agent loop](https://github.com/earendil-works/pi/blob/581d75a89cea21e50d6a26df840352f94427f633/packages/agent/src/agent-loop.ts).** *What it is:* the actual model stream → tool batch → ordered results → next-model-call cycle, including steering and follow-up admission. *Why second:* it is the smallest executable baseline in the corpus, so every later layer has a visible reason to exist.
+3. **[Event and message types](https://github.com/earendil-works/pi/blob/581d75a89cea21e50d6a26df840352f94427f633/packages/agent/src/types.ts).** *What they are:* the application-defined message, context transformation, provider conversion, tool, and event seams used by the loop. *Why now:* they show that policy is delegated through explicit contracts rather than absent by magic.
+4. **[Coding-session wrapper](https://github.com/earendil-works/pi/blob/581d75a89cea21e50d6a26df840352f94427f633/packages/coding-agent/src/core/agent-session.ts).** *What it is:* persistence, branching, compaction, extensions, models/auth, retry, tools, and UI-facing session behavior. *Why last:* the contrast in size and responsibility is Pi’s central architectural lesson.
 
 ## System shape
 

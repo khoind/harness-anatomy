@@ -50,6 +50,7 @@ def main() -> int:
         "AGENTS.md",
         "site-docs/guide/walkthrough.md",
         "site-docs/guide/anatomy.md",
+        "site-docs/guide/corpus.md",
         "site-docs/guide/glossary.md",
         "site-docs/guide/comparison.md",
         "site-docs/guide/research-method.md",
@@ -64,7 +65,9 @@ def main() -> int:
     }
     assert catalog_files == set(slugs), "catalog and manifest slugs differ"
 
-    for document in ROOT.rglob("*.md"):
+    owned_markdown = [ROOT / "README.md", ROOT / "AGENTS.md"]
+    owned_markdown.extend((ROOT / "site-docs").rglob("*.md"))
+    for document in owned_markdown:
         for destination in MARKDOWN_LINK.findall(document.read_text(encoding="utf-8")):
             target = destination.split("#", 1)[0]
             if not target or target.startswith(("https://", "http://", "mailto:")):
@@ -72,7 +75,11 @@ def main() -> int:
             resolved = (document.parent / target).resolve()
             assert resolved.exists(), f"broken link in {document.relative_to(ROOT)}: {target}"
 
-    for path in ROOT.rglob("*"):
+    owned_text_roots = [ROOT / "site-docs", ROOT / "manifest", ROOT / "scripts"]
+    owned_text_files = [ROOT / "README.md", ROOT / "AGENTS.md", ROOT / "mkdocs.yml"]
+    for text_root in owned_text_roots:
+        owned_text_files.extend(text_root.rglob("*"))
+    for path in owned_text_files:
         if not path.is_file() or path.suffix.lower() not in TEXT_SUFFIXES:
             continue
         relative = str(path.relative_to(ROOT))

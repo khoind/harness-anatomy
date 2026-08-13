@@ -16,9 +16,10 @@ Among the broad desktop systems, Kun offers the clearest port-oriented inventory
 
 ## Read these first
 
-1. [Agent loop](https://github.com/KunAgent/Kun/blob/1377249652cef30f9f7b777f8f6111fd6ac70fc9/kun/src/loop/agent-loop.ts) — the top-level cycle.
-2. [Model client port](https://github.com/KunAgent/Kun/blob/1377249652cef30f9f7b777f8f6111fd6ac70fc9/kun/src/ports/model-client.ts) — provider independence at the loop boundary.
-3. [Runtime event recorder](https://github.com/KunAgent/Kun/blob/1377249652cef30f9f7b777f8f6111fd6ac70fc9/kun/src/services/runtime-event-recorder.ts) — semantic facts emitted by the runtime.
+1. **[Architecture guide](https://github.com/KunAgent/Kun/blob/1377249652cef30f9f7b777f8f6111fd6ac70fc9/docs/kun-architecture.en.md).** *What it is:* the topology and one-runtime rule across GUI, TUI, Connect, and internal delegated engines. *Why first:* it distinguishes the public runtime authority from implementation plurality behind it.
+2. **[Runtime factory](https://github.com/KunAgent/Kun/blob/1377249652cef30f9f7b777f8f6111fd6ac70fc9/kun/src/server/runtime-factory.ts).** *What it is:* the single composition root binding model, tool, storage, approval, event, compaction, extension, and delegated-runtime ports. *Why second:* it shows both the visibility benefit and size cost of central composition.
+3. **[Agent loop](https://github.com/KunAgent/Kun/blob/1377249652cef30f9f7b777f8f6111fd6ac70fc9/kun/src/loop/agent-loop.ts).** *What it is:* native turn orchestration, steering, context, tools, limits, compaction, and delegated handoff. *Why now:* the dependencies have names after the factory and are easier to follow.
+4. **[Runtime event recorder](https://github.com/KunAgent/Kun/blob/1377249652cef30f9f7b777f8f6111fd6ac70fc9/kun/src/services/runtime-event-recorder.ts), [SSE route](https://github.com/KunAgent/Kun/blob/1377249652cef30f9f7b777f8f6111fd6ac70fc9/kun/src/server/routes/events.ts), and [reducer](https://github.com/KunAgent/Kun/blob/1377249652cef30f9f7b777f8f6111fd6ac70fc9/kun/src/domain/runtime-event-reducer.ts).** *What they are:* persist-before-publish commit, cursor replay/live gap closure, and deterministic client projection. *Why last:* this is the complete proof that clients observe runtime truth rather than own it.
 
 ## System shape
 

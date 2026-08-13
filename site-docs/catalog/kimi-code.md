@@ -16,9 +16,10 @@ Kimi Code is an unusually useful natural experiment in replacing a harness body 
 
 ## Read these first
 
-1. [`KimiHarness`](https://github.com/MoonshotAI/kimi-code/blob/5912d4c7d19d68975e85b007976b1bef59edae5c/packages/node-sdk/src/kimi-harness.ts) — the stable client façade.
-2. [V2 loop service](https://github.com/MoonshotAI/kimi-code/blob/5912d4c7d19d68975e85b007976b1bef59edae5c/packages/agent-core-v2/src/agent/loop/loopService.ts) — the current engine's coordination point.
-3. [Typed event bus](https://github.com/MoonshotAI/kimi-code/blob/5912d4c7d19d68975e85b007976b1bef59edae5c/packages/agent-core-v2/src/app/event/eventBus.ts) — how services and clients observe work.
+1. **[Legacy loop guide](https://github.com/MoonshotAI/kimi-code/blob/5912d4c7d19d68975e85b007976b1bef59edae5c/packages/agent-core/src/loop/README.md).** *What it is:* the compact account of turns, steps, convergence, tool ordering, and host responsibilities. *Why first:* it gives the simple semantics that v2 later distributes across services.
+2. **[`KimiHarness`](https://github.com/MoonshotAI/kimi-code/blob/5912d4c7d19d68975e85b007976b1bef59edae5c/packages/node-sdk/src/kimi-harness.ts).** *What it is:* the stable client façade and its comments on v1/v2 behavior. *Why second:* it identifies the promise the migration must preserve—and shows that the legacy factory still exists.
+3. **[V2 scopes](https://github.com/MoonshotAI/kimi-code/blob/5912d4c7d19d68975e85b007976b1bef59edae5c/packages/agent-core-v2/src/app/scopes.ts) and [step-request queue](https://github.com/MoonshotAI/kimi-code/blob/5912d4c7d19d68975e85b007976b1bef59edae5c/packages/agent-core-v2/src/agent/loop/stepRequestQueue.ts).** *What they are:* App/Workspace/Session/Agent lifetimes and the admission/merge/steering rules for work. *Why now:* these are the smallest files that expose v2’s two defining mechanisms before the large coordinator.
+4. **[V2 loop service](https://github.com/MoonshotAI/kimi-code/blob/5912d4c7d19d68975e85b007976b1bef59edae5c/packages/agent-core-v2/src/agent/loop/loopService.ts).** *What it is:* the turn queue, durable operations, live events, model/tool cycle, and error handlers meeting in one service. *Why last:* after scopes and admission are known, its coordination is interpretable rather than overwhelming.
 
 ## System shape
 

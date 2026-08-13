@@ -13,7 +13,8 @@ nav:
   - Guide:
       - Worked walkthrough: guide/walkthrough.md
       - Common anatomy: guide/anatomy.md
-      - Comparison by question: guide/comparison.md
+      - Corpus design and coverage: guide/corpus.md
+      - Designs and trade-offs: guide/comparison.md
       - Research method: guide/research-method.md
       - Source-reading paths: guide/reading-paths.md
       - Glossary: guide/glossary.md
@@ -24,9 +25,12 @@ nav:
       - OpenCode: catalog/opencode.md
       - Kimi Code: catalog/kimi-code.md
       - Grok Build: catalog/grok-build.md
+      - DeepSeek Harness: catalog/deepseek-harness.md
       - MiMo Code: catalog/mimo-code.md
+      - Prime Agent: catalog/prime-agent.md
       - Kun: catalog/kun.md
       - CodePilot: catalog/codepilot.md
+      - bb: catalog/bb.md
       - Multica: catalog/multica.md
   - Advanced:
       - Typed request/response interfaces: guide/interface-lens.md

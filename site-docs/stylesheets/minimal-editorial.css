@@ -103,7 +103,7 @@ pre {
 }
 
 .md-sidebar--secondary {
-  display: none;
+  display: none !important;
 }
 
 .md-content__inner {
@@ -136,9 +136,10 @@ pre {
 
 .top-toc {
   margin: 0 0 2.3rem;
-  border: 1px solid var(--md-default-fg-color--lightest);
-  border-radius: 0.45rem;
-  background: color-mix(in srgb, var(--md-default-fg-color) 4%, var(--md-default-bg-color));
+  border: 1px solid var(--md-default-fg-color--lightest) !important;
+  border-radius: 0.45rem !important;
+  background: color-mix(in srgb, var(--md-default-fg-color) 4%, var(--md-default-bg-color)) !important;
+  box-shadow: none !important;
 }
 
 .top-toc summary {
@@ -146,7 +147,14 @@ pre {
   cursor: pointer;
   font-size: 1rem;
   font-weight: 600;
+  list-style: revert;
   list-style-position: inside;
+  background: transparent !important;
+}
+
+.top-toc summary::before,
+.top-toc summary::after {
+  display: none !important;
 }
 
 .top-toc__contents {

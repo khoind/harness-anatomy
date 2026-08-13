@@ -13,8 +13,9 @@ nav:
   - Guide:
       - Worked walkthrough: guide/walkthrough.md
       - Common anatomy: guide/anatomy.md
+      - Design map: guide/design-map.md
+      - Detailed comparisons: guide/comparison.md
       - Corpus design and coverage: guide/corpus.md
-      - Designs and trade-offs: guide/comparison.md
       - Research method: guide/research-method.md
       - Source-reading paths: guide/reading-paths.md
       - Glossary: guide/glossary.md

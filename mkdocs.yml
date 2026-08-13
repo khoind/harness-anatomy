@@ -33,6 +33,7 @@ nav:
 
 theme:
   name: material
+  custom_dir: overrides
   features:
     - navigation.sections
     - navigation.tabs
@@ -57,6 +58,9 @@ theme:
 
 extra_css:
   - stylesheets/minimal-editorial.css
+
+extra_javascript:
+  - javascripts/top-toc.js
 
 plugins:
   - search

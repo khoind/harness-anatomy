@@ -2,7 +2,11 @@
 
 A source-linked atlas of thirteen agent harnesses and adjacent control planes.
 
-Start with the rendered documentation, then read:
+The rendered documentation is the primary reading surface:
+
+**[Read Harness Anatomy](https://khoind.github.io/harness-anatomy/)**
+
+Start with:
 
 1. [one request through a harness](site-docs/guide/walkthrough.md);
 2. [the common anatomy](site-docs/guide/anatomy.md);

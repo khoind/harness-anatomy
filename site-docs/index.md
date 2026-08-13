@@ -1,70 +1,78 @@
 # Harness Anatomy
 
-A source-linked atlas of thirteen agent harnesses and adjacent control planes. It is written as a standalone guide for readers who want to understand how language models are turned into software agents, compare architectural choices, or inspect pinned implementations.
+A source-linked atlas of thirteen agent harnesses and adjacent control planes. It explains how language models are turned into software agents, why mature harnesses make different architectural choices, and where those choices appear in pinned source.
 
-A language model by itself receives input and produces output. An **agent harness** supplies the machinery around it: it chooses the context the model sees, exposes capabilities, applies policy, executes approved effects, returns observations, records durable state, manages retries and cancellation, and presents the interaction through one or more clients.
+## The shortest useful definition
+
+A language model receives input and produces output. An **agent harness** turns that model into an acting system. It:
+
+- decides what the model sees;
+- exposes capabilities such as files, commands, search, and subagents;
+- decides which requested effects may run and how they are contained;
+- executes effects and returns observations;
+- records enough state to continue, recover, or explain the work;
+- manages retries, cancellation, clients, and longer-lived sessions.
+
+The model proposes. The harness owns the machinery that makes proposals consequential.
 
 ## Four roles that should not be confused
 
 | Role | Plain definition |
 | --- | --- |
-| **Model** | Produces candidate text and requests for effects. It does not directly own files, processes, credentials, or durable history. |
+| **Model** | Produces candidate text and requests for effects. It does not directly own files, proceses, credentials, or durable history. |
 | **Harness** | Runs the model–effect loop and governs context, capabilities, policy, execution, state, and lifecycle. Upstream projects also call this the runtime, body, engine, or agent core. |
-| **Product/client** | Presents and controls the harness through a terminal user interface (TUI), graphical user interface (GUI), integrated development environment (IDE), command-line protocol, or remote client. |
-| **Meta-harness** | Supervises one or more foreign harness processes. It normally sees agent-process events rather than the underlying model API. |
+| **Product/client** | Lets a person or another program submit work, inspect progress, approve effects, and view results. A TUI, desktop app, IDE, or remote client can be a surface over the same harness. |
+| **Meta-harness** | Supervises one or more foreign harness processes. It usually sees process and task events rather than the underlying model requests and tool operations. |
 
-The word **agent** is overloaded. It may mean the model-plus-harness system, one long-lived character or session, or one worker run. This atlas uses the more specific terms above whenever the distinction matters. See the [glossary](guide/glossary.md) for the house vocabulary and upstream synonyms.
+The word **agent** is overloaded. It may mean the model-plus-harness system, a long-lived character or session, or one worker run. The atlas uses the more specific terms above whenever the distinction matters.
 
-## Audience and prerequisites
+## Read in three passes
 
-The main guide assumes only that the reader understands ordinary software APIs, processes, and structured data. No prior knowledge of the thirteen projects is required. The source-reading pages assume enough TypeScript, Python, Rust, or Go familiarity to follow control flow.
+You do not need to read all thirteen repositories.
+
+### Pass 1: see the machine
+
+1. [Worked walkthrough](guide/walkthrough.md) — follow one ordinary coding request from user input to context, model calls, effects, approval, tests, and durable outcome.
+2. [Common anatomy](guide/anatomy.md) — learn the four jobs every mature harness must somehow perform and the identities that keep work coherent over time.
+
+### Pass 2: learn the design choices
+
+3. [Design map](guide/design-map.md) — organize the thirteen systems by authority, replaceability, durable truth, and who can operate or extend them.
+4. Read [Pi](catalog/pi.md), then one counterweight: [Codex](catalog/codex.md), [DeepChat](catalog/deepchat.md), or [DeepSeek Harness](catalog/deepseek-harness.md).
+5. Use the [detailed comparison](guide/comparison.md) as a reference once the main contrasts are clear.
+
+### Pass 3: inspect the evidence
+
+6. Choose one annotated [source-reading path](guide/reading-paths.md); do not read every repository front to back.
+7. Use the [research method](guide/research-method.md) before turning a source contrast into a general claim or a local design decision.
+
+The [glossary](guide/glossary.md) translates the atlas vocabulary into the names used by different projects.
+
+## What the shelf contains
+
+The corpus is deliberately varied rather than statistically representative.
+
+- **Small reusable loop:** [Pi](catalog/pi.md).
+- **Complete local harnesses:** [Codex](catalog/codex.md), [OpenCode](catalog/opencode.md), [Grok Build](catalog/grok-build.md), [Kimi Code](catalog/kimi-code.md), [DeepSeek Harness](catalog/deepseek-harness.md), [MiMo Code](catalog/mimo-code.md), and [Prime Agent](catalog/prime-agent.md).
+- **Desktop and product runtimes:** [Kun](catalog/kun.md), [DeepChat](catalog/deepchat.md), and [CodePilot](catalog/codepilot.md).
+
+- **Agent development environment:** [bb](catalog/bb.md).
+- **Outer supervisor:** [Multica](catalog/multica.md).
+
+The projects are not thirteen competitors implementing the same object. Pi exposes a small inner cycle; bb owns a development control plane; Multica supervises complete foreign processes. Compare them only where their responsibilities overlap.
+
+Read [Corpus design and coverage](guide/corpus.md) for the selection criteria, lineages, blind spots, and limits on generalization.
+
+## Evidence labels
 
 Claims use four labels:
 
 - **Observed** — directly documented or visible in the pinned source.
-- **Inferred** — an architectural interpretation supported by several source points.
-- **Hypothesis** — a distinction proposed for testing rather than accepted as fact.
-- **Project note** — a recommendation for a particular downstream project.
+- **Inferred** — an architectural interpretation supported by source evidence.
+- **Hypothesis** — a predicted benefit or failure mode proposed for testing.
+- **Decision** or **project note** — a local recommendation under stated goals and constraints.
 
-## Start here
-
-For a first reading:
-
-1. [Worked walkthrough](guide/walkthrough.md) — follow one coding request through context, model calls, approval, sandboxing, effects, persistence, and the user interface.
-2. [Common anatomy](guide/anatomy.md) — the recurring layers and identities across the systems.
-3. [Corpus design and coverage](guide/corpus.md) — why these specimens are here, their lineages, and what the sample cannot establish.
-4. [Designs and trade-offs](guide/comparison.md) — learn each harness’s governing choices before using the how-to appendix.
-5. [Pi](catalog/pi.md), then [Codex](catalog/codex.md) or [DeepChat](catalog/deepchat.md) — move from a small loop to mature lifecycle machinery.
-6. [Glossary](guide/glossary.md) — resolve terms whose names differ across projects.
-
-Other routes:
-
-- **Answering a design question:** [research method](guide/research-method.md) → two contrasting cards → [source-reading paths](guide/reading-paths.md).
-- **Inspecting source:** one catalog card → its three “Read these first” links → the deeper route in that card.
-- **Maintaining the atlas:** [manifest](harnesses.json) → catalog cards → `python3 scripts/check_atlas.py`.
-- **Optional advanced lens:** [typed request/response interfaces](guide/interface-lens.md).
-
-## Corpus
-
-| Project | Kind | Source terms | Best specimen for |
-| --- | --- | --- | --- |
-| [Pi](catalog/pi.md) | minimal agent toolkit | MIT | the smallest legible loop and event vocabulary |
-| [Codex](catalog/codex.md) | terminal agent + app server | Apache-2.0 | policy/sandbox separation; typed protocol; durable threads |
-| [OpenCode](catalog/opencode.md) | client/server coding agent | MIT | server-first composition; session processor; plugins |
-| [Grok Build](catalog/grok-build.md) | terminal agent + ACP | Apache-2.0 | rich tools, subagents, permissions, and TUI integration |
-| [Kimi Code](catalog/kimi-code.md) | terminal/IDE agent platform | MIT | explicit services, event bus, protocol adapters, undo |
-| [DeepSeek Harness](catalog/deepseek-harness.md) | configurable microkernel | MIT | reversible plugin composition and model-visible session reconstruction |
-| [MiMo Code](catalog/mimo-code.md) | long-horizon OpenCode derivative | MIT plus use restrictions | memory, evolution, actors, and long-run continuity |
-| [Prime Agent](catalog/prime-agent.md) | persistent Python/RLM harness | MIT | code as capability medium, recursive children, continual harness state |
-| [Kun](catalog/kun.md) | local-first desktop agent | PolyForm Noncommercial | port-oriented loop, compaction, cancellation, agent graph |
-| [DeepChat](catalog/deepchat.md) | desktop agent platform | Apache-2.0 | Tape, retry identities, backend boundaries, remote sessions |
-| [CodePilot](catalog/codepilot.md) | desktop multi-model agent | BUSL-1.1 | thin multi-engine stream waist and cross-channel approvals |
-| [bb](catalog/bb.md) | agent development environment | MIT | server/host control plane, provider processes, agent-operated plugins |
-| [Multica](catalog/multica.md) | fleet/meta-harness | modified Apache terms | adapters around independent harnesses; task lifecycle |
-
-“Source terms” matters. CodePilot, Kun, and Multica are source-available rather than Open Source Initiative (OSI) open-source. MiMo Code has an MIT source license alongside a separate use-restrictions document. Read upstream terms before copying code; this atlas is architectural analysis, not legal advice.
-
-The repository currently declares no separate reuse license for its original prose, tables, or manifest. Do not assume permission to redistribute or adapt them; upstream terms remain independent.
+The labels prevent an attractive design from being mistaken for an established advantage.
 
 ## Reproduce the source shelf
 
@@ -78,13 +86,8 @@ Fetched repositories are detached at the reviewed commits and ignored by Git. Us
 
 ## Scope and provenance
 
-The corpus began with a user-supplied list of ten projects and was expanded with DeepSeek Harness, Prime Agent, and bb to cover three missing architecture families. The original reference image is not part of this repository; the table above and [`harnesses.json`](harnesses.json) are the authoritative scope record. See [Corpus design and coverage](guide/corpus.md) for the selection method, lineage controls, and blind spots.
+The corpus began with a user-supplied list of ten projects and was expanded with DeepSeek Harness, Prime Agent, and bb to cover three missing architecture families. [`harnesses.json`](harnesses.json) is the authoritative record of repositories, commits, terms, lineages, and source entry points.
 
-This is not a ranking or a statistically representative list of coding agents. It is a purposive source-reading corpus spanning several scales:
+This is not a ranking and not a population sample. Source reading can reveal ownership boundaries, protocols, stored evidence, and plausible failure modes. It cannot establish which harness produces better work without controlled runs of **model × harness configuration × task**.
 
-- a reusable inner loop (Pi);
-- complete local harnesses (Codex, OpenCode, Grok Build, Kimi Code, DeepSeek Harness, MiMo Code, Prime Agent);
-- desktop and development-environment systems (Kun, DeepChat, CodePilot, bb);
-- a harness-of-harnesses (Multica).
-
-The atlas was reviewed on **2026-08-13**. These projects move quickly; pinned revisions preserve the evidence behind the notes.
+The atlas was reviewed on **2026-08-13**. The pinned revisions preserve the evidence behind the notes even as upstream projects continue to change.

@@ -19,7 +19,7 @@ The model proposes. The harness owns the machinery that makes proposals conseque
 
 | Role | Plain definition |
 | --- | --- |
-| **Model** | Produces candidate text and requests for effects. It does not directly own files, proceses, credentials, or durable history. |
+| **Model** | Produces candidate text and requests for effects. It does not directly own files, processes, credentials, or durable history. |
 | **Harness** | Runs the model–effect loop and governs context, capabilities, policy, execution, state, and lifecycle. Upstream projects also call this the runtime, body, engine, or agent core. |
 | **Product/client** | Lets a person or another program submit work, inspect progress, approve effects, and view results. A TUI, desktop app, IDE, or remote client can be a surface over the same harness. |
 | **Meta-harness** | Supervises one or more foreign harness processes. It usually sees process and task events rather than the underlying model requests and tool operations. |
@@ -55,7 +55,6 @@ The corpus is deliberately varied rather than statistically representative.
 - **Small reusable loop:** [Pi](catalog/pi.md).
 - **Complete local harnesses:** [Codex](catalog/codex.md), [OpenCode](catalog/opencode.md), [Grok Build](catalog/grok-build.md), [Kimi Code](catalog/kimi-code.md), [DeepSeek Harness](catalog/deepseek-harness.md), [MiMo Code](catalog/mimo-code.md), and [Prime Agent](catalog/prime-agent.md).
 - **Desktop and product runtimes:** [Kun](catalog/kun.md), [DeepChat](catalog/deepchat.md), and [CodePilot](catalog/codepilot.md).
-
 - **Agent development environment:** [bb](catalog/bb.md).
 - **Outer supervisor:** [Multica](catalog/multica.md).
 

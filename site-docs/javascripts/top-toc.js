@@ -2,7 +2,7 @@ function installTopTableOfContents() {
   const article = document.querySelector("article.md-content__inner");
   const heading = article?.querySelector("h1");
   const sourceList = document.querySelector(
-    ".md-sidebar--secondary .md-nav--secondary > .md-nav__list"
+    ".md-sidebar--primary .md-nav--primary > .md-nav__list"
   );
 
   if (!article || !heading || !sourceList || article.querySelector(".top-toc")) {
@@ -13,11 +13,11 @@ function installTopTableOfContents() {
   details.className = "top-toc";
 
   const summary = document.createElement("summary");
-  summary.textContent = "Table of Contents";
+  summary.textContent = "Contents";
 
   const contents = document.createElement("nav");
   contents.className = "top-toc__contents";
-  contents.setAttribute("aria-label", "Table of contents");
+  contents.setAttribute("aria-label", "Site contents");
   contents.append(sourceList.cloneNode(true));
 
   details.append(summary, contents);

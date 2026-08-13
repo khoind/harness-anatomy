@@ -1,0 +1,2478 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A source-linked atlas of agent harness architecture">
+      
+      
+      
+        <link rel="canonical" href="https://khoind.github.io/harness-anatomy/guide/comparison/">
+      
+      
+        <link rel="prev" href="../design-map/">
+      
+      
+        <link rel="next" href="../corpus/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Detailed comparisons - Harness Anatomy</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/minimal-editorial-v4.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#181818" media="(prefers-color-scheme: dark)">
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#harness-designs-and-their-trade-offs" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Harness Anatomy" class="md-header__button md-logo" aria-label="Harness Anatomy" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Harness Anatomy
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Detailed comparisons
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/khoind/harness-anatomy" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    khoind/harness-anatomy
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Harness Anatomy" class="md-nav__button md-logo" aria-label="Harness Anatomy" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Harness Anatomy
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/khoind/harness-anatomy" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    khoind/harness-anatomy
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Start here
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guide
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../walkthrough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Worked walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../anatomy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Common anatomy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../design-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Detailed comparisons
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Detailed comparisons
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-designs-at-a-glance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The designs at a glance
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reusable-loop-pi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reusable loop: Pi
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#complete-local-harnesses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Complete local harnesses
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Complete local harnesses">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#codex-the-governed-typed-session" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Codex: the governed typed session
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opencode-the-shared-session-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OpenCode: the shared session server
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grok-build-explicit-state-domain-owners" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grok Build: explicit state-domain owners
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kimi-code-migration-behind-a-stable-facade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kimi Code: migration behind a stable façade
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deepseek-harness-the-configurable-microkernel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DeepSeek Harness: the configurable microkernel
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mimo-code-a-long-horizon-derivative" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MiMo Code: a long-horizon derivative
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prime-agent-persistent-code-as-the-capability-medium" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prime Agent: persistent code as the capability medium
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#product-and-development-environment-harnesses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Product and development-environment harnesses
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Product and development-environment harnesses">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kun-one-runtime-authority-thin-clients" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kun: one runtime authority, thin clients
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deepchat-temporal-identity-and-evidence-before-projection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DeepChat: temporal identity and evidence before projection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#codepilot-a-stable-shell-over-unlike-engines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CodePilot: a stable shell over unlike engines
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bb-the-agent-operated-development-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        bb: the agent-operated development environment
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#outer-supervisor-multica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Outer supervisor: Multica
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trade-offs-that-recur-across-the-corpus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trade-offs that recur across the corpus
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Trade-offs that recur across the corpus">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#legibility-versus-operational-completeness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Legibility versus operational completeness
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#replaceability-versus-preserved-difference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Replaceability versus preserved difference
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-composition-versus-runtime-composition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fixed composition versus runtime composition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transcript-history-versus-executable-or-derived-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Transcript history versus executable or derived state
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configurable-policy-versus-enforced-containment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configurable policy versus enforced containment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#human-first-product-versus-agent-operable-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Human-first product versus agent-operable environment
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-source-comparison-can-and-cannot-establish" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What source comparison can and cannot establish
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix-how-to-lookup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix: how-to lookup
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../corpus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Corpus design and coverage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../research-method/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Research method
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reading-paths/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Source-reading paths
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Specimens
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Specimens
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../catalog/pi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../catalog/codex/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenAI Codex
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../catalog/deepchat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DeepChat
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../catalog/opencode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenCode
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../catalog/kimi-code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kimi Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../catalog/grok-build/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Grok Build
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../catalog/deepseek-harness/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DeepSeek Harness
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../catalog/mimo-code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MiMo Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../catalog/prime-agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prime Agent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../catalog/kun/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kun
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../catalog/codepilot/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CodePilot
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../catalog/bb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    bb
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../catalog/multica/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multica
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Advanced
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interface-lens/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Typed request/response interfaces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-designs-at-a-glance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The designs at a glance
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reusable-loop-pi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reusable loop: Pi
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#complete-local-harnesses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Complete local harnesses
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Complete local harnesses">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#codex-the-governed-typed-session" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Codex: the governed typed session
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opencode-the-shared-session-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OpenCode: the shared session server
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#grok-build-explicit-state-domain-owners" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Grok Build: explicit state-domain owners
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kimi-code-migration-behind-a-stable-facade" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kimi Code: migration behind a stable façade
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deepseek-harness-the-configurable-microkernel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DeepSeek Harness: the configurable microkernel
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mimo-code-a-long-horizon-derivative" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MiMo Code: a long-horizon derivative
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prime-agent-persistent-code-as-the-capability-medium" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prime Agent: persistent code as the capability medium
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#product-and-development-environment-harnesses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Product and development-environment harnesses
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Product and development-environment harnesses">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kun-one-runtime-authority-thin-clients" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kun: one runtime authority, thin clients
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deepchat-temporal-identity-and-evidence-before-projection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DeepChat: temporal identity and evidence before projection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#codepilot-a-stable-shell-over-unlike-engines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CodePilot: a stable shell over unlike engines
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bb-the-agent-operated-development-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        bb: the agent-operated development environment
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#outer-supervisor-multica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Outer supervisor: Multica
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trade-offs-that-recur-across-the-corpus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trade-offs that recur across the corpus
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Trade-offs that recur across the corpus">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#legibility-versus-operational-completeness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Legibility versus operational completeness
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#replaceability-versus-preserved-difference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Replaceability versus preserved difference
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fixed-composition-versus-runtime-composition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fixed composition versus runtime composition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transcript-history-versus-executable-or-derived-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Transcript history versus executable or derived state
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configurable-policy-versus-enforced-containment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configurable policy versus enforced containment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#human-first-product-versus-agent-operable-environment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Human-first product versus agent-operable environment
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-source-comparison-can-and-cannot-establish" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What source comparison can and cannot establish
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix-how-to-lookup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix: how-to lookup
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="harness-designs-and-their-trade-offs">Harness designs and their trade-offs<a class="headerlink" href="#harness-designs-and-their-trade-offs" title="Permanent link">&para;</a></h1>
+<p>This comparison starts with each harness’s <strong>governing design choice</strong>: where it puts authority, what it chooses to make replaceable, and what kind of state it treats as truth. The “how do I find an example of X?” lookup has been moved to the appendix.</p>
+<p>This is not a feature scorecard. A tiny library, a desktop product, and a fleet supervisor are not competing implementations of the same object. The useful question is: <strong>what does this design make easy, and what complexity does it accept in return?</strong> Source facts below are <strong>Observed</strong>; benefits and costs are architectural <strong>Inferences</strong> unless the upstream project states them directly.</p>
+<h2 id="the-designs-at-a-glance">The designs at a glance<a class="headerlink" href="#the-designs-at-a-glance" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Harness</th>
+<th>Scale</th>
+<th>Governing choice</th>
+<th>What the choice buys</th>
+<th>Price paid or limit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../../catalog/pi/">Pi</a></td>
+<td>Reusable inner loop</td>
+<td>Keep the loop and event vocabulary minimal; layer the coding product around it</td>
+<td>Legibility, embedding, provider reuse</td>
+<td>Product policy, persistence, and safety are deliberately outside the small core</td>
+</tr>
+<tr>
+<td><a href="../../catalog/codex/">Codex</a></td>
+<td>Complete local harness</td>
+<td>Make a typed session the authority for governed turns</td>
+<td>Explicit lifecycle, approval/sandbox separation, durable rollout, child protocols</td>
+<td>More types, state transitions, recovery paths, and cross-component coordination</td>
+</tr>
+<tr>
+<td><a href="../../catalog/opencode/">OpenCode</a></td>
+<td>Complete local harness</td>
+<td>Put sessions behind a shared server and assemble capabilities per turn</td>
+<td>Several clients, dynamic providers/plugins, centralized session semantics</td>
+<td>Large session service, runtime-shaped APIs, and an unfinished persistence migration</td>
+</tr>
+<tr>
+<td><a href="../../catalog/grok-build/">Grok Build</a></td>
+<td>Complete local harness</td>
+<td>Give mutable state domains explicit actor owners</td>
+<td>Serialized mutation, provider normalization, staged policy, inspectable storage</td>
+<td>Cross-actor ordering and a large integration loop become correctness concerns</td>
+</tr>
+<tr>
+<td><a href="../../catalog/kimi-code/">Kimi Code</a></td>
+<td>Complete local harness</td>
+<td>Preserve one SDK façade while replacing the engine with scoped v2 services</td>
+<td>Incremental migration, explicit lifetimes, admission and undo services</td>
+<td>Compatibility adapters leak differences; two engines and vocabularies coexist</td>
+</tr>
+<tr>
+<td><a href="../../catalog/deepseek-harness/">DeepSeek Harness</a></td>
+<td>Complete local harness</td>
+<td>Make nearly every subsystem a reversible runtime plugin</td>
+<td>Product variants without forking a privileged core</td>
+<td>Registration order, scope, configuration, and teardown become executable semantics</td>
+</tr>
+<tr>
+<td><a href="../../catalog/mimo-code/">MiMo Code</a></td>
+<td>Complete local harness</td>
+<td>Extend OpenCode for long-horizon memory, actors, checkpoints, and evolution</td>
+<td>More continuity and self-improvement machinery for long runs</td>
+<td>More hidden state and recovery policy; inherited code is not independent evidence</td>
+</tr>
+<tr>
+<td><a href="../../catalog/prime-agent/">Prime Agent</a></td>
+<td>Complete local harness</td>
+<td>Give the model one persistent Python control environment with recursive agent calls</td>
+<td>A compact, programmable capability medium that survives compaction</td>
+<td>Kernel state is harder to reproduce, govern, and explain than fixed tool calls</td>
+</tr>
+<tr>
+<td><a href="../../catalog/kun/">Kun</a></td>
+<td>Desktop/product runtime</td>
+<td>Put semantics in one local service; make every surface a protocol adapter</td>
+<td>One authority across GUI, TUI, and remote clients; cursor replay</td>
+<td>Broad composition root, service/event machinery, and daemon/security adapters</td>
+</tr>
+<tr>
+<td><a href="../../catalog/deepchat/">DeepChat</a></td>
+<td>Desktop/product runtime</td>
+<td>Treat temporal identities and an append-only Tape/journal as execution truth</td>
+<td>Precise retries, recovery, audit, and honest backend boundaries</td>
+<td>More identities, schemas, transactions, projections, and parked failure states</td>
+</tr>
+<tr>
+<td><a href="../../catalog/codepilot/">CodePilot</a></td>
+<td>Desktop/product shell</td>
+<td>Normalize several engines into a thin, UI-shaped SSE waist</td>
+<td>One desktop/remote experience across native and foreign runtimes</td>
+<td>Lifecycle truth is distributed across adapters, browser/server collectors, and rows</td>
+</tr>
+<tr>
+<td><a href="../../catalog/bb/">bb</a></td>
+<td>Agent development environment</td>
+<td>Make users and agents peers over threads, hosts, workspaces, providers, and plugins</td>
+<td>A remotely operable, self-extensible development control plane</td>
+<td>Central contracts and full-trust extensions enlarge the operational and trust surface</td>
+</tr>
+<tr>
+<td><a href="../../catalog/multica/">Multica</a></td>
+<td>Outer meta-harness</td>
+<td>Treat complete foreign agent processes as supervised task workers</td>
+<td>Shared scheduling, watchdogs, workspaces, settlement, and review</td>
+<td>It cannot see or govern every inner request/effect; adapters inevitably leak differences</td>
+</tr>
+</tbody>
+</table>
+<h2 id="reusable-loop-pi">Reusable loop: Pi<a class="headerlink" href="#reusable-loop-pi" title="Permanent link">&para;</a></h2>
+<p><strong>Design centre.</strong> Pi keeps the model/tool cycle small enough to read as one control-flow unit. The stateful <code>Agent</code>, coding-session wrapper, persistence, compaction, extensions, and user interface are layers around that loop rather than responsibilities hidden inside it.</p>
+<table>
+<thead>
+<tr>
+<th>Observed choice</th>
+<th>Benefit</th>
+<th>Trade-off</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A small loop consumes messages and tools, streams model events, executes requested tools, appends results, and continues</td>
+<td>The semantic centre is inspectable and reusable</td>
+<td>The loop alone is not a safe or durable coding product</td>
+</tr>
+<tr>
+<td>A unified model package normalizes provider calls before they reach the loop</td>
+<td>Model providers can change without rewriting the core cycle</td>
+<td>A common API cannot erase every provider-specific behavior</td>
+</tr>
+<tr>
+<td>Events are emitted outward; the coding-session layer decides what becomes durable</td>
+<td>Embedders choose their own storage and presentation semantics</td>
+<td>“The event stream” and “the recoverable record” are not automatically the same thing</td>
+</tr>
+</tbody>
+</table>
+<p>Pi’s closest contrast is Codex. Pi makes the irreducible cycle legible; Codex makes the operational contract around that cycle explicit. Prime Agent is a lineage contrast: it inherits Pi’s foundation but radically changes the model-facing capability medium.</p>
+<h2 id="complete-local-harnesses">Complete local harnesses<a class="headerlink" href="#complete-local-harnesses" title="Permanent link">&para;</a></h2>
+<h3 id="codex-the-governed-typed-session">Codex: the governed typed session<a class="headerlink" href="#codex-the-governed-typed-session" title="Permanent link">&para;</a></h3>
+<p><strong>Design centre.</strong> Codex treats a session/thread as the long-lived authority. Turns are admitted into that session; context, tools, approvals, sandbox policy, rollout recording, cancellation, and child-agent operations pass through typed boundaries.</p>
+<table>
+<thead>
+<tr>
+<th>Observed choice</th>
+<th>Benefit</th>
+<th>Trade-off</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tool specification, dispatch, orchestration, approval, and sandbox lowering are separate layers</td>
+<td>“Allowed by policy” stays distinct from “contained by the operating system”</td>
+<td>More hand-offs must preserve one operation identity and failure meaning</td>
+</tr>
+<tr>
+<td>Durable rollout records thread events while live protocol events serve clients</td>
+<td>Resume and audit do not depend on one UI connection</td>
+<td>Recovery and projection logic must reconcile durable and live lifecycles</td>
+</tr>
+<tr>
+<td>Child agents are created through explicit tool handlers and protocol identities</td>
+<td>Delegation remains subordinate to a parent/session authority</td>
+<td>Limits, cancellation, permissions, and result return become a distributed protocol</td>
+</tr>
+</tbody>
+</table>
+<p>Codex buys governability with explicit machinery. It is a poor first file for learning the basic loop, but a strong specimen for learning what production lifecycle concerns do to that loop.</p>
+<h3 id="opencode-the-shared-session-server">OpenCode: the shared session server<a class="headerlink" href="#opencode-the-shared-session-server" title="Permanent link">&para;</a></h3>
+<p><strong>Design centre.</strong> OpenCode puts session semantics in a server-oriented service that several clients can drive. Tools are assembled for a turn from built-ins, plugins, MCP servers, and configuration; permission rules are evaluated centrally; provider and client integrations meet the same session processor.</p>
+<table>
+<thead>
+<tr>
+<th>Observed choice</th>
+<th>Benefit</th>
+<th>Trade-off</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The session service is shared by terminal, web, desktop, and SDK callers</td>
+<td>Clients need not reimplement the agent state machine</td>
+<td>The public/session API becomes a broad compatibility surface</td>
+</tr>
+<tr>
+<td>Tools are assembled dynamically for each turn</td>
+<td>Capabilities can depend on model, mode, plugin, and workspace state</td>
+<td>Reproducibility requires recording the effective configuration, not just a model name</td>
+</tr>
+<tr>
+<td>Active v1 implementation coexists with a more explicit v2 session specification</td>
+<td>Evolution can proceed without a flag day</td>
+<td>Documentation, storage, and implementation may describe different generations</td>
+</tr>
+</tbody>
+</table>
+<p>OpenCode’s permission rules govern requests; they are not by themselves an operating-system sandbox. Its most useful contrast is Kun: both centralize runtime semantics, but Kun makes persist-before-publish events and thin clients a stricter product rule.</p>
+<h3 id="grok-build-explicit-state-domain-owners">Grok Build: explicit state-domain owners<a class="headerlink" href="#grok-build-explicit-state-domain-owners" title="Permanent link">&para;</a></h3>
+<p><strong>Design centre.</strong> Grok Build does <strong>not</strong> have one actor owning all mutation. <code>SessionActor</code> coordinates orchestration and lifecycle, while <code>ChatStateActor</code> serializes conversation, configuration, token, and persistence state; other mutation remains encapsulated behind narrower owners. Provider streams, tools, policy, storage, and clients cross those ownership boundaries.</p>
+<table>
+<thead>
+<tr>
+<th>Observed choice</th>
+<th>Benefit</th>
+<th>Trade-off</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Agent definitions assemble prompts, tools, permissions, skills, compaction, and completion requirements</td>
+<td>Agent variants can be configured without duplicating the orchestration loop</td>
+<td>The definition schema becomes a substantial runtime API</td>
+</tr>
+<tr>
+<td>Responses, Messages, and Chat Completions are translated into a common sampling vocabulary</td>
+<td>Retry, cancellation, and session logic can be reused</td>
+<td>Provider-only semantics still leak or get approximated</td>
+</tr>
+<tr>
+<td>Permission is staged through direct policy, shell preflight, classification, rules, and human approval</td>
+<td>Policy, uncertainty, and provenance remain distinguishable</td>
+<td>Precedence, parsing, fallback, and provenance form a safety-critical audit surface</td>
+</tr>
+<tr>
+<td>Human-readable JSONL and related artifacts support replay, rewind, and repair</td>
+<td>Local evidence is easy to inspect and partially recover</td>
+<td>Multi-file consistency, torn tails, corruption, and upgrades need repair machinery</td>
+</tr>
+</tbody>
+</table>
+<p>Kimi is the cleanest contrast: Grok concentrates production behavior in actor/crate boundaries; Kimi v2 spreads behavior across lifecycle-scoped services.</p>
+<h3 id="kimi-code-migration-behind-a-stable-facade">Kimi Code: migration behind a stable façade<a class="headerlink" href="#kimi-code-migration-behind-a-stable-facade" title="Permanent link">&para;</a></h3>
+<p><strong>Design centre.</strong> Kimi Code preserves a broad <code>KimiHarness</code> client promise while a compact legacy engine and a service-oriented v2 coexist. V2 is the default for major first-party surfaces, but the exported legacy factory still constructs v1; migration is therefore a first-class architectural fact.</p>
+<table>
+<thead>
+<tr>
+<th>Observed choice</th>
+<th>Benefit</th>
+<th>Trade-off</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>App → Workspace → Session → Agent scopes own services and reverse-order disposal</td>
+<td>Resource lifetimes and contribution points are explicit</td>
+<td>Scope selection and teardown order affect correctness</td>
+</tr>
+<tr>
+<td>Step requests are queued with admission modes, mergeability, steering, and lazy context resolution</td>
+<td>Cancellation and steering occur at defined boundaries</td>
+<td>The scheduler is more complex than a simple prompt queue</td>
+</tr>
+<tr>
+<td>Tools declare resource access; non-conflicting calls may overlap behind an ordered policy chain</td>
+<td>Safe parallelism is tied to explicit conflicts</td>
+<td>Incorrect declarations threaten correctness; unknown access becomes conservative</td>
+</tr>
+<tr>
+<td>Durable operations coexist with an ephemeral per-agent event bus; compaction and undo have separate owners</td>
+<td>Persistence, UI coordination, recovery, and reversibility can evolve independently</td>
+<td>Adapters must preserve ordering across two vocabularies; undo has quiescent boundaries</td>
+</tr>
+</tbody>
+</table>
+<p>DeepSeek Harness is its sharpest contrast: Kimi assembles known services behind a stable façade, while DeepSeek makes the assembly graph itself a runtime product.</p>
+<h3 id="deepseek-harness-the-configurable-microkernel">DeepSeek Harness: the configurable microkernel<a class="headerlink" href="#deepseek-harness-the-configurable-microkernel" title="Permanent link">&para;</a></h3>
+<p><strong>Design centre.</strong> DeepSeek Harness makes the loop, model adapter, tool registry, session log, policy, UI, and subagent behavior Cordis plugins. Ordered profiles compose bundles and patches; registrations are reversible effects. A default small loop still exists, but it is a replaceable contribution rather than a privileged centre.</p>
+<table>
+<thead>
+<tr>
+<th>Observed choice</th>
+<th>Benefit</th>
+<th>Trade-off</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nearly every subsystem is a plugin assembled by runtime configuration</td>
+<td>Product variants and experiments can change documented seams without forking the loop</td>
+<td>Configuration and listener order become program behavior; tracing ownership is nonlocal</td>
+</tr>
+<tr>
+<td>Durable <code>session/*</code>, live <code>agent/*</code>, and capability-specific events are separate planes</td>
+<td>Replayable facts do not have to absorb transient coordination</td>
+<td>Plugin authors must choose the right plane and preserve cross-plane ordering</td>
+</tr>
+<tr>
+<td>One append-only session log reconstructs every model-visible message and request envelope</td>
+<td>Resume, fork, UI replay, and compaction share an authority</td>
+<td>Logs and validated projections are verbose and sophisticated; current formats are pre-stable</td>
+</tr>
+<tr>
+<td>Tool calls pass through pre-hooks, monotonic guards, wrappers, finalization, and observation</td>
+<td>Policy and instrumentation remain modular</td>
+<td>Waterfall short-circuiting, classification, scope, and disposal are correctness-sensitive</td>
+</tr>
+<tr>
+<td>Agent scopes inherit and shadow tools, prompt sections, and listeners</td>
+<td>Per-agent capability sets do not require process-global registries</td>
+<td>Ancestry, shadowing, and quiescent teardown are harder to debug</td>
+</tr>
+</tbody>
+</table>
+<p>This project adds a new corpus-wide lesson: <strong>extensibility has a lifecycle</strong>. Registration order, scope, durable-versus-live event choice, configuration replacement, and teardown are not plugin ergonomics; they determine behavior. The pinned code is a developer preview, so it is evidence of a design, not yet of long-term compatibility.</p>
+<h3 id="mimo-code-a-long-horizon-derivative">MiMo Code: a long-horizon derivative<a class="headerlink" href="#mimo-code-a-long-horizon-derivative" title="Permanent link">&para;</a></h3>
+<p><strong>Design centre.</strong> MiMo Code begins with OpenCode and adds explicit memory, session boundaries, checkpoints, actor-like delegation, a code-execution microkernel, and an evolution skill. The relevant comparison is therefore not “MiMo versus OpenCode as independent systems,” but “what the derivative adds and what state those additions introduce.”</p>
+<table>
+<thead>
+<tr>
+<th>Observed choice</th>
+<th>Benefit</th>
+<th>Trade-off</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Memory and session-boundary services externalize information beyond the immediate transcript</td>
+<td>Long work can carry forward selected facts without replaying everything</td>
+<td>Selection is lossy and introduces another source of model-visible state</td>
+</tr>
+<tr>
+<td>Checkpoints and actors make long tasks divisible and recoverable</td>
+<td>Progress and delegation gain explicit boundaries</td>
+<td>More identities and partial outcomes must be reconciled</td>
+</tr>
+<tr>
+<td>An evolution skill can update working strategies from experience</td>
+<td>The harness can adapt between or during tasks</td>
+<td>Drift, evaluation, rollback, and provenance become part of correctness</td>
+</tr>
+<tr>
+<td>A QuickJS-based code microkernel exposes programmatic composition</td>
+<td>The model can compute and orchestrate through code</td>
+<td>QuickJS execution is not equivalent to shell/OS sandboxing</td>
+</tr>
+</tbody>
+</table>
+<p>Prime Agent is the closest conceptual contrast. Both add long-run and self-refining state, but Prime makes a persistent Python environment the primary model-facing interface; MiMo retains the broader conventional tool/session architecture it inherits.</p>
+<h3 id="prime-agent-persistent-code-as-the-capability-medium">Prime Agent: persistent code as the capability medium<a class="headerlink" href="#prime-agent-persistent-code-as-the-capability-medium" title="Permanent link">&para;</a></h3>
+<p><strong>Design centre.</strong> Prime Agent gives the model one built-in IPython tool. Files, shell actions, skills, context inspection, and recursive child agents are composed as Python operations inside a persistent kernel, while the TypeScript host still owns provider, session, policy, scheduling, and lifecycle authority.</p>
+<table>
+<thead>
+<tr>
+<th>Observed choice</th>
+<th>Benefit</th>
+<th>Trade-off</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A persistent IPython namespace is the main model-facing workbench</td>
+<td>The model can name values, inspect results, write control flow, and combine operations without a wide top-level tool schema</td>
+<td>Hidden mutable kernel state makes exact replay, explanation, and policy analysis harder</td>
+</tr>
+<tr>
+<td>Recursive <code>rlm(...)</code> calls appear as Python functions</td>
+<td>Delegation composes naturally with ordinary program logic</td>
+<td>Recursive cost, cancellation, permissions, and child evidence need firm host limits</td>
+</tr>
+<tr>
+<td>Kernel state survives context compaction</td>
+<td>Useful computed objects need not be restated in the prompt</td>
+<td>Model-visible text history and executable state can diverge</td>
+</tr>
+<tr>
+<td>Continual Harness state stores supplemental prompts, memories, skill descriptions, and subagent specifications with snapshots/rollback</td>
+<td>Refinement becomes durable and recoverable without rewriting the immutable base prompt</td>
+<td>Evaluation quality, provenance, and drift become part of the product contract</td>
+</tr>
+<tr>
+<td>A daemon keeps sessions, kernels, schedules, goals, heartbeats, and children alive after detachment</td>
+<td>Long-running work becomes operational rather than merely conversational</td>
+<td>Background authority and cleanup grow substantially</td>
+</tr>
+</tbody>
+</table>
+<p>Prime Agent is a hard fork of Pi. The inherited loop/TUI/session machinery is not independent evidence; the architectural contribution is the persistent executable/RLM layer, continual state, and daemon lifecycle.</p>
+<h2 id="product-and-development-environment-harnesses">Product and development-environment harnesses<a class="headerlink" href="#product-and-development-environment-harnesses" title="Permanent link">&para;</a></h2>
+<h3 id="kun-one-runtime-authority-thin-clients">Kun: one runtime authority, thin clients<a class="headerlink" href="#kun-one-runtime-authority-thin-clients" title="Permanent link">&para;</a></h3>
+<p><strong>Design centre.</strong> Kun insists that GUI, TUI, Connect, and other modes use the same <code>kun serve</code> runtime. A large composition root binds narrow ports for models, tools, stores, approvals, events, compaction, extensions, and delegated provider-native engines.</p>
+<table>
+<thead>
+<tr>
+<th>Observed choice</th>
+<th>Benefit</th>
+<th>Trade-off</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>One service owns thread/turn/tool/context semantics for every client</td>
+<td>No client silently creates a second policy or state machine</td>
+<td>Service discovery, leases, restart, migrations, and central blast radius matter</td>
+</tr>
+<tr>
+<td>Semantic events are persisted before publication and replayed by cursor into reducers</td>
+<td>Reconnect and projection are client-independent</td>
+<td>Event schema, snapshots, reducers, replay gaps, and backpressure require machinery</td>
+</tr>
+<tr>
+<td>Approval policy, reviewer, and sandbox are separate axes; desktop consent crosses protected native IPC</td>
+<td>Safety concepts and trust boundaries stay distinct</td>
+<td>Live waiters remain process state; adapters must settle exactly one decision</td>
+</tr>
+<tr>
+<td>Immutable prompt prefixes and compaction policy live in the core</td>
+<td>Cache reuse and context pressure behave consistently across clients</td>
+<td>Prompt ordering and lossy summary heuristics become core invariants</td>
+</tr>
+</tbody>
+</table>
+<p>Kun trades a broad core for a very clear product rule: clients render and control execution; they do not own it.</p>
+<h3 id="deepchat-temporal-identity-and-evidence-before-projection">DeepChat: temporal identity and evidence before projection<a class="headerlink" href="#deepchat-temporal-identity-and-evidence-before-projection" title="Permanent link">&para;</a></h3>
+<p><strong>Design centre.</strong> DeepChat treats a Session as the product object, a Run as logical work, provider attempts as physical executions, and Tape as durable truth. Native DeepChat and direct ACP remain distinct backends behind one session manager rather than being normalized into a fictitious common inner loop.</p>
+<table>
+<thead>
+<tr>
+<th>Observed choice</th>
+<th>Benefit</th>
+<th>Trade-off</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>runId</code>, logical round, request sequence, and physical attempt distinguish retry from changed-request recovery</td>
+<td>Attribution and retry safety are precise</td>
+<td>Every provider/runtime path must honor a rigid temporal protocol</td>
+</tr>
+<tr>
+<td>Tape combines context, attempt lineage, contracts, and a strict effect journal; projections follow committed facts</td>
+<td>Audit and restart recovery can reason about unknown effects</td>
+<td>Schemas, idempotency rules, transactions, reconciliation, and parked states multiply</td>
+</tr>
+<tr>
+<td>Native and direct-ACP backends expose selected facets through typed handles</td>
+<td>Foreign semantics are not laundered into false equivalence</td>
+<td>Lifecycle adapters are duplicated and only partially uniform</td>
+</tr>
+<tr>
+<td>Session, permission, and input semantics stay in the main-process core</td>
+<td>Desktop, remote, and scheduler surfaces cannot redefine authority</td>
+<td>The core and its DTO/facet surface are large</td>
+</tr>
+</tbody>
+</table>
+<p>CodePilot is the nearest contrast: both wrap native and foreign engines, but DeepChat preserves backend differences and invests in durable fact identity; CodePilot normalizes more aggressively through a thin stream.</p>
+<h3 id="codepilot-a-stable-shell-over-unlike-engines">CodePilot: a stable shell over unlike engines<a class="headerlink" href="#codepilot-a-stable-shell-over-unlike-engines" title="Permanent link">&para;</a></h3>
+<p><strong>Design centre.</strong> CodePilot registers native, Claude SDK, and Codex app-server runtimes behind a deliberately small interface—stream, interrupt, availability, disposal—and translates their output into a legacy-compatible SSE vocabulary consumed by desktop and remote paths.</p>
+<table>
+<thead>
+<tr>
+<th>Observed choice</th>
+<th>Benefit</th>
+<th>Trade-off</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The runtime abstraction intentionally avoids unifying tools, messages, and permissions</td>
+<td>New engines can enter without pretending their internals match</td>
+<td>The common waist is a lowest common denominator with runtime-specific escape hatches</td>
+</tr>
+<tr>
+<td>Browser and server collectors consume the same UI-shaped SSE</td>
+<td>One renderer/parser and remote integration path can span engines</td>
+<td>Live queues, final message construction, timeout, and projection semantics are distributed</td>
+</tr>
+<tr>
+<td>One permission waiter and operation ID can be projected to desktop or messaging channels</td>
+<td>Different surfaces settle the same underlying decision</td>
+<td>Live authority is in process; channel capabilities and trust paths differ</td>
+</tr>
+<tr>
+<td>SQLite stores sessions/messages/status, collectors persist partial output, runtime refs vary, and file rewind is memory-only</td>
+<td>Pragmatic recovery is possible without a full event-sourced core</td>
+<td>Durability guarantees vary by engine and surface</td>
+</tr>
+</tbody>
+</table>
+<p>Terminology matters here: <code>run-checkpoint.ts</code> supplies UI warning/banner data, not a durable execution checkpoint. Durable partial assistant output is handled by the stream collector; file rewind is a bounded in-memory stack.</p>
+<h3 id="bb-the-agent-operated-development-environment">bb: the agent-operated development environment<a class="headerlink" href="#bb-the-agent-operated-development-environment" title="Permanent link">&para;</a></h3>
+<p><strong>Design centre.</strong> bb is not primarily another inner model loop. Its server and SQLite database are product truth; per-machine host daemons provision workspaces and run provider processes; web/desktop and CLI clients operate the same projects, threads, environments, hosts, commands, and events. Standard, manager, and child threads make agents first-class operators alongside users.</p>
+<table>
+<thead>
+<tr>
+<th>Observed choice</th>
+<th>Benefit</th>
+<th>Trade-off</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Server state and server/client contracts are separate from host-daemon commands/events</td>
+<td>Remote clients and machines can evolve around explicit ownership boundaries</td>
+<td>Contract evolution and distributed failure handling become central concerns</td>
+</tr>
+<tr>
+<td>Host daemons own local provider processes and managed/unmanaged workspaces</td>
+<td>The control plane can reach real machines without placing filesystem/process authority in the browser</td>
+<td>Enrollment, trust, liveness, cleanup, and split-brain prevention become operational work</td>
+</tr>
+<tr>
+<td>Provider adapters normalize Codex, Claude, Pi, and ACP at the process boundary</td>
+<td>One IDE can coordinate several harnesses</td>
+<td>It sees provider-runtime events, not one uniform inner semantic model</td>
+</tr>
+<tr>
+<td>Full-trust plugins can add services, agent tools, CLI commands, settings, RPC, and UI slots; an agent-readable skill explains how</td>
+<td>The environment can be extended by the same agents that use it</td>
+<td>Plugin code shares product authority; review and trust are more important than sandbox rhetoric</td>
+</tr>
+<tr>
+<td>Managed worktrees make workspace isolation and recovery explicit</td>
+<td>Parallel tasks have inspectable Git boundaries</td>
+<td>Worktree lifecycle and repository edge cases become product semantics</td>
+</tr>
+</tbody>
+</table>
+<p>bb overlaps CodePilot’s multi-engine shell and Multica’s outer orchestration. Its distinct value is the <strong>agent-operated, self-extensible development environment</strong>: the control plane and IDE are themselves part of what agents can understand and change.</p>
+<h2 id="outer-supervisor-multica">Outer supervisor: Multica<a class="headerlink" href="#outer-supervisor-multica" title="Permanent link">&para;</a></h2>
+<p><strong>Design centre.</strong> Multica adapts complete installed agent CLIs into a common <code>Execute → Session</code> task-worker boundary. Its daemon owns claim, capacity, cancellation polling, workspace preparation, stream draining, watchdogs, usage, retry choice, and terminal settlement. It does not own the child’s model/tool loop.</p>
+<table>
+<thead>
+<tr>
+<th>Observed choice</th>
+<th>Benefit</th>
+<th>Trade-off</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Roughly twenty unlike CLIs/protocols enter through a common adapter</td>
+<td>Scheduling and task lifecycle can be shared</td>
+<td>Options and capabilities remain asymmetric; normalized messages lose detail</td>
+</tr>
+<tr>
+<td>The daemon owns the entire outer task state machine</td>
+<td>Orphaned work and settlement can be handled consistently</td>
+<td>The daemon is a large, race-heavy integration point and sees only child output</td>
+</tr>
+<tr>
+<td>Per-task directories/config homes, path locks, disposable worktrees, and process-tree cancellation prepare work</td>
+<td>Parallel work and result provenance become outer lifecycle properties</td>
+<td>These mechanisms are not a universal OS sandbox; inner permissions remain the foreign CLI’s</td>
+</tr>
+<tr>
+<td>Resume is abandoned only under restricted error and “no tool observed” evidence</td>
+<td>Continuity is preserved while obvious hopeless resumes can restart</td>
+<td>“No tool observed” cannot prove no mutation; adapters differ in what they can detect</td>
+</tr>
+<tr>
+<td>A presenter turns normalized traces into reviewable messages and diffs</td>
+<td>Heterogeneous runs remain usable to humans</td>
+<td>Projection hides process noise and cannot reconstruct unretained inner evidence</td>
+</tr>
+</tbody>
+</table>
+<p>Multica should be compared with bb at the control-plane level, or with inner harnesses to learn the limit of an outer adapter. Its <code>isolation.go</code> runs environment preparation in a killable helper so a blocked filesystem operation cannot resume later; it is <strong>not</strong> evidence that every child agent runs in a uniform sandbox.</p>
+<h2 id="trade-offs-that-recur-across-the-corpus">Trade-offs that recur across the corpus<a class="headerlink" href="#trade-offs-that-recur-across-the-corpus" title="Permanent link">&para;</a></h2>
+<h3 id="legibility-versus-operational-completeness">Legibility versus operational completeness<a class="headerlink" href="#legibility-versus-operational-completeness" title="Permanent link">&para;</a></h3>
+<p>Pi makes the loop easy to understand. Codex, Grok, DeepChat, and Kun make restart, concurrency, permission, and client behavior explicit. Neither is “more correct” in isolation: a reusable loop should not pretend to be a full product, and a full product cannot stay as small as the loop it contains.</p>
+<h3 id="replaceability-versus-preserved-difference">Replaceability versus preserved difference<a class="headerlink" href="#replaceability-versus-preserved-difference" title="Permanent link">&para;</a></h3>
+<p>The projects choose different replacement seams:</p>
+<ul>
+<li>Pi normalizes <strong>model providers</strong>.</li>
+<li>OpenCode and Kun stabilize a <strong>session service</strong> for several clients.</li>
+<li>CodePilot stabilizes a thin <strong>engine event stream</strong>.</li>
+<li>DeepChat shares product sessions while preserving <strong>native versus ACP backends</strong>.</li>
+<li>DeepSeek replaces <strong>runtime plugins</strong>, including the loop itself.</li>
+<li>Multica and bb adapt <strong>whole provider processes</strong>.</li>
+</ul>
+<p>Every common waist helps its consumers and risks erasing facts that do not fit. The right test is whether the abstraction preserves identity, cancellation, policy, and failure meaning—not whether two engines emit similarly named events.</p>
+<h3 id="fixed-composition-versus-runtime-composition">Fixed composition versus runtime composition<a class="headerlink" href="#fixed-composition-versus-runtime-composition" title="Permanent link">&para;</a></h3>
+<p>Grok uses actor/crate boundaries; Kimi uses scoped services; Kun uses ports and a composition root; DeepSeek uses ordered reversible plugins. Runtime composition permits more product variation without forks, but makes configuration, scope, listener order, and teardown part of the program that must be tested and recorded.</p>
+<h3 id="transcript-history-versus-executable-or-derived-state">Transcript history versus executable or derived state<a class="headerlink" href="#transcript-history-versus-executable-or-derived-state" title="Permanent link">&para;</a></h3>
+<p>DeepSeek and DeepChat emphasize reconstructable durable facts. Prime keeps a persistent executable namespace. MiMo and continual refinement add selected memories or strategy state. Compaction everywhere creates a second question beyond “what is stored?”: <strong>what can the next model request actually see, and can that view be reproduced?</strong></p>
+<h3 id="configurable-policy-versus-enforced-containment">Configurable policy versus enforced containment<a class="headerlink" href="#configurable-policy-versus-enforced-containment" title="Permanent link">&para;</a></h3>
+<p>Permission rules, human approval, and automated classification decide whether an effect should proceed. A sandbox or constrained process decides what an approved or compromised effect can do. Codex and Kun expose this separation clearly. OpenCode rules, DeepChat’s broker, CodePilot’s cross-channel prompts, DeepSeek guards, and Grok classification are not interchangeable with operating-system isolation. Multica’s workspace preparation is at a different scale again.</p>
+<h3 id="human-first-product-versus-agent-operable-environment">Human-first product versus agent-operable environment<a class="headerlink" href="#human-first-product-versus-agent-operable-environment" title="Permanent link">&para;</a></h3>
+<p>Most clients let a human drive an agent. bb makes agents first-class operators of the same threads, hosts, workspaces, CLI, and plugin system. Prime and DeepSeek make parts of the harness programmable from inside a session. This increases leverage, but also moves extension provenance, trust, rollback, and self-modification into the safety model.</p>
+<h2 id="what-source-comparison-can-and-cannot-establish">What source comparison can and cannot establish<a class="headerlink" href="#what-source-comparison-can-and-cannot-establish" title="Permanent link">&para;</a></h2>
+<p>The source can establish ownership boundaries, ordering rules, stored evidence, declared protocols, and reachable failure paths. It can support inferences about complexity and trade-offs.</p>
+<p>It cannot establish which harness produces better work. A controlled performance claim must name the <strong>model × harness configuration × task</strong>, including effective tools, prompts, permissions, sandbox mode, memory, and intervention policy. “Same model” is not a controlled comparison when the harness changes what the model can see and do.</p>
+<h2 id="appendix-how-to-lookup">Appendix: how-to lookup<a class="headerlink" href="#appendix-how-to-lookup" title="Permanent link">&para;</a></h2>
+<p>Use this only after learning the designs above.</p>
+<table>
+<thead>
+<tr>
+<th>If you want to learn how to…</th>
+<th>Start with</th>
+<th>Then contrast with</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Read the smallest complete model/tool cycle</td>
+<td>Pi</td>
+<td>Codex’s turn/session machinery</td>
+</tr>
+<tr>
+<td>Separate approval from sandbox enforcement</td>
+<td>Codex</td>
+<td>Kun and DeepSeek’s policy pipelines</td>
+</tr>
+<tr>
+<td>Reconstruct exactly what the model saw</td>
+<td>DeepSeek session log</td>
+<td>DeepChat Tape, then CodePilot’s layered rows/collectors</td>
+</tr>
+<tr>
+<td>Share one runtime across several clients</td>
+<td>Kun or OpenCode</td>
+<td>CodePilot’s thinner SSE waist</td>
+</tr>
+<tr>
+<td>Migrate an engine behind a stable SDK</td>
+<td>Kimi Code</td>
+<td>DeepSeek’s runtime-composed product graph</td>
+</tr>
+<tr>
+<td>Normalize several provider protocols</td>
+<td>Grok Build</td>
+<td>Pi’s model package and CodePilot’s engine adapters</td>
+</tr>
+<tr>
+<td>Keep useful state across very long work</td>
+<td>Prime Agent</td>
+<td>MiMo Code, Kimi compaction, Pi compaction</td>
+</tr>
+<tr>
+<td>Design inner child agents</td>
+<td>Codex or Prime Agent</td>
+<td>DeepChat child sessions</td>
+</tr>
+<tr>
+<td>Supervise complete foreign harnesses</td>
+<td>Multica</td>
+<td>bb’s server/host development environment</td>
+</tr>
+<tr>
+<td>Build a harness agents can extend</td>
+<td>DeepSeek Harness or bb</td>
+<td>Prime Agent’s continual refinement</td>
+</tr>
+<tr>
+<td>Deliver one approval across desktop and chat</td>
+<td>CodePilot</td>
+<td>DeepChat or Kun’s core-owned consent</td>
+</tr>
+</tbody>
+</table>
+<p>For exact files and an explanation of why each one matters, continue to <a href="../reading-paths/">Source-reading paths</a>. For the limits of the sample itself, read <a href="../corpus/">Corpus design and coverage</a>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.top", "navigation.tracking", "search.highlight", "search.suggest", "content.code.copy", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

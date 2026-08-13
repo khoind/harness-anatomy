@@ -1,0 +1,1622 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A source-linked atlas of agent harness architecture">
+      
+      
+      
+        <link rel="canonical" href="https://khoind.github.io/harness-anatomy/guide/reading-paths/">
+      
+      
+        <link rel="prev" href="../research-method/">
+      
+      
+        <link rel="next" href="../glossary/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Source-reading paths - Harness Anatomy</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/minimal-editorial-v4.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#181818" media="(prefers-color-scheme: dark)">
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#source-reading-paths" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Harness Anatomy" class="md-header__button md-logo" aria-label="Harness Anatomy" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Harness Anatomy
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Source-reading paths
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/khoind/harness-anatomy" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    khoind/harness-anatomy
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Harness Anatomy" class="md-nav__button md-logo" aria-label="Harness Anatomy" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Harness Anatomy
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/khoind/harness-anatomy" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    khoind/harness-anatomy
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Start here
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guide
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../walkthrough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Worked walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../anatomy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Common anatomy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../design-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../comparison/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Detailed comparisons
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../corpus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Corpus design and coverage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../research-method/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Research method
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Source-reading paths
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Source-reading paths
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#route-1-from-the-smallest-loop-to-production-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Route 1: from the smallest loop to production lifecycle
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#route-2-fixed-composition-scoped-services-and-runtime-plugins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Route 2: fixed composition, scoped services, and runtime plugins
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#route-3-code-as-the-model-facing-harness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Route 3: code as the model-facing harness
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#route-4-capabilities-permission-approval-and-containment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Route 4: capabilities, permission, approval, and containment
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#route-5-durable-facts-live-events-and-restart-truth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Route 5: durable facts, live events, and restart truth
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#route-6-provider-normalization-and-client-independence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Route 6: provider normalization and client independence
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#route-7-long-horizon-continuity-and-mutable-harness-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Route 7: long-horizon continuity and mutable harness state
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#route-8-child-agents-and-outer-supervision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Route 8: child agents and outer supervision
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#route-9-human-interaction-across-surfaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Route 9: human interaction across surfaces
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#route-10-task-workspace-and-process-control-planes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Route 10: task workspace and process control planes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-disciplined-way-to-take-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A disciplined way to take notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Specimens
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Specimens
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../catalog/pi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../catalog/codex/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenAI Codex
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../catalog/deepchat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DeepChat
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../catalog/opencode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenCode
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../catalog/kimi-code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kimi Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../catalog/grok-build/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Grok Build
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../catalog/deepseek-harness/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DeepSeek Harness
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../catalog/mimo-code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MiMo Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../catalog/prime-agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prime Agent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../catalog/kun/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kun
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../catalog/codepilot/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CodePilot
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../catalog/bb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    bb
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../catalog/multica/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multica
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Advanced
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interface-lens/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Typed request/response interfaces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#route-1-from-the-smallest-loop-to-production-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Route 1: from the smallest loop to production lifecycle
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#route-2-fixed-composition-scoped-services-and-runtime-plugins" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Route 2: fixed composition, scoped services, and runtime plugins
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#route-3-code-as-the-model-facing-harness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Route 3: code as the model-facing harness
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#route-4-capabilities-permission-approval-and-containment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Route 4: capabilities, permission, approval, and containment
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#route-5-durable-facts-live-events-and-restart-truth" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Route 5: durable facts, live events, and restart truth
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#route-6-provider-normalization-and-client-independence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Route 6: provider normalization and client independence
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#route-7-long-horizon-continuity-and-mutable-harness-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Route 7: long-horizon continuity and mutable harness state
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#route-8-child-agents-and-outer-supervision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Route 8: child agents and outer supervision
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#route-9-human-interaction-across-surfaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Route 9: human interaction across surfaces
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#route-10-task-workspace-and-process-control-planes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Route 10: task workspace and process control planes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-disciplined-way-to-take-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A disciplined way to take notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="source-reading-paths">Source-reading paths<a class="headerlink" href="#source-reading-paths" title="Permanent link">&para;</a></h1>
+<p>This page is an annotated route into pinned upstream code. It answers two questions the bare links could not: <strong>what is in each file, and why is it the next file to read?</strong> New readers should first complete the <a href="../walkthrough/">worked walkthrough</a>, then learn each project’s design choice in the <a href="../comparison/">comparison</a>.</p>
+<p>Do not read thirteen repositories front to back. Choose one route, follow the sequence, and write down the authority, input, output, durable facts, and failure boundary at every step. The final comparison prompt in each route is the check that you understood the files rather than merely opened them.</p>
+<h2 id="route-1-from-the-smallest-loop-to-production-lifecycle">Route 1: from the smallest loop to production lifecycle<a class="headerlink" href="#route-1-from-the-smallest-loop-to-production-lifecycle" title="Permanent link">&para;</a></h2>
+<p><strong>What this route answers:</strong> Which part of an agent is the irreducible model/tool cycle, and which parts are product obligations that grow around it?</p>
+<ol>
+<li><strong><a href="https://github.com/earendil-works/pi/blob/581d75a89cea21e50d6a26df840352f94427f633/packages/agent/README.md">Pi agent README</a>.</strong> This short document defines runs, turns, application messages, streamed events, and parallel tool ordering. Read it before code because it states the intended minimum and tells you which complexity is deliberately absent.</li>
+<li><strong><a href="https://github.com/earendil-works/pi/blob/581d75a89cea21e50d6a26df840352f94427f633/packages/agent/src/agent-loop.ts">Pi <code>agent-loop.ts</code></a>.</strong> Trace model stream → assistant message → tool batch → ordered results → next model call. This is the executable semantic baseline against which every larger harness can be measured.</li>
+<li><strong><a href="https://github.com/earendil-works/pi/blob/581d75a89cea21e50d6a26df840352f94427f633/packages/agent/src/types.ts">Pi types</a>.</strong> The types name the seams for transforming application context, converting to provider messages, obtaining steering/follow-up input, and emitting events. Read them to see that the compact loop delegates policy rather than making it disappear.</li>
+<li><strong><a href="https://github.com/earendil-works/pi/blob/581d75a89cea21e50d6a26df840352f94427f633/packages/coding-agent/src/core/agent-session.ts">Pi <code>AgentSession</code></a>.</strong> This is the coding product around the loop: session persistence, models/auth, retry, extensions, tools, branching, and compaction. The size difference is the lesson.</li>
+<li><strong><a href="https://github.com/openai/codex/blob/902bd9e06b3ecb32cbf7f8e64cd23b956be3e7fe/codex-rs/core/src/session/turn.rs">Codex turn</a> and <a href="https://github.com/openai/codex/blob/902bd9e06b3ecb32cbf7f8e64cd23b956be3e7fe/codex-rs/core/src/session/session.rs">session</a>.</strong> Read the turn first, then locate its long-lived owner. Codex makes lifecycle, policy, tools, protocol events, cancellation, and recovery first-class rather than application callbacks.</li>
+</ol>
+<p><strong>You should now be able to explain:</strong> why Pi’s loop and Codex’s session are different scales, and why file count is not a measure of loop quality.</p>
+<h2 id="route-2-fixed-composition-scoped-services-and-runtime-plugins">Route 2: fixed composition, scoped services, and runtime plugins<a class="headerlink" href="#route-2-fixed-composition-scoped-services-and-runtime-plugins" title="Permanent link">&para;</a></h2>
+<p><strong>What this route answers:</strong> Where can a harness vary, and when does extension lifecycle become part of correctness?</p>
+<ol>
+<li><strong><a href="https://github.com/MoonshotAI/kimi-code/blob/5912d4c7d19d68975e85b007976b1bef59edae5c/packages/agent-core-v2/AGENTS.md">Kimi v2 scope guide</a> and <a href="https://github.com/MoonshotAI/kimi-code/blob/5912d4c7d19d68975e85b007976b1bef59edae5c/packages/agent-core-v2/src/app/scopes.ts">scope code</a>.</strong> These define App → Workspace → Session → Agent lifetimes and reverse-order disposal. Start here for a known service graph with explicit ownership.</li>
+<li><strong><a href="https://github.com/KunAgent/Kun/blob/1377249652cef30f9f7b777f8f6111fd6ac70fc9/kun/src/server/runtime-factory.ts">Kun composition root</a>.</strong> Read selectively for where stores, ports, loop, approvals, events, compaction, extensions, and delegated engines are bound. It shows the benefits and concentration cost of fixed dependency injection.</li>
+<li><strong><a href="https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/docs/architecture.md">DeepSeek architecture</a>.</strong> Profiles, bundles, event planes, services, and agents are introduced as a runtime plugin tree. This is the conceptual break from “one composition root.”</li>
+<li><strong><a href="https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/packages/bundle/base/cordis.patch.yml">DeepSeek base patch</a>.</strong> Read the ordered rows, not just the slogan. The graph assembles persistence, sandbox, approval, tools, compaction, subagents, and UI services; its order is executable behavior.</li>
+<li><strong><a href="https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/packages/core/scope/src/index.ts">DeepSeek scope</a>.</strong> This file implements agent-local inheritance, shadowing, routing, and effect-owned disposal. It reveals the debugging and teardown cost paid for runtime composition.</li>
+</ol>
+<p><strong>Compare:</strong> Kimi’s stable façade and known scoped services with DeepSeek’s reversible product graph. Ask which configuration must be stored to reproduce one run.</p>
+<h2 id="route-3-code-as-the-model-facing-harness">Route 3: code as the model-facing harness<a class="headerlink" href="#route-3-code-as-the-model-facing-harness" title="Permanent link">&para;</a></h2>
+<p><strong>What this route answers:</strong> What changes when the model composes capabilities in a persistent programming language rather than choosing from a broad fixed tool catalog?</p>
+<ol>
+<li><strong><a href="https://github.com/PrimeIntellect-ai/prime-agent/blob/7787f07415d843b9a800f6a4720e0c739bd608e5/packages/coding-agent/docs/rlm.md">Prime RLM contract</a>.</strong> This explains the one-tool model, persistent variables, host authority, and recursive children. It is the best vocabulary for the route.</li>
+<li><strong><a href="https://github.com/PrimeIntellect-ai/prime-agent/blob/7787f07415d843b9a800f6a4720e0c739bd608e5/packages/coding-agent/src/core/tools/ipython.ts">Prime IPython tool</a> → <a href="https://github.com/PrimeIntellect-ai/prime-agent/blob/7787f07415d843b9a800f6a4720e0c739bd608e5/packages/coding-agent/src/core/kernel/index.ts">kernel</a>.</strong> Follow one tool call into lazy Jupyter provisioning, serialized execution, output shaping, and typed host requests. This locates the trust boundary: Python is powerful, but the TypeScript host remains authoritative.</li>
+<li><strong><a href="https://github.com/PrimeIntellect-ai/prime-agent/blob/7787f07415d843b9a800f6a4720e0c739bd608e5/packages/coding-agent/src/core/rlm-runtime.ts">Prime RLM runtime bridge</a> and <a href="https://github.com/PrimeIntellect-ai/prime-agent/blob/7787f07415d843b9a800f6a4720e0c739bd608e5/prime-agent-runtime/src/rlm/__init__.py">Python shim</a>.</strong> These two files meet at the language boundary. They show validation and that <code>rlm()</code> admits a child; it does not synchronously return an answer.</li>
+<li><strong><a href="https://github.com/XiaomiMiMo/MiMo-Code/blob/42dcbf34f6b2be012d66bb54adf3d0d7795b83d9/docs/architecture/codex-microkernel-runtime.en.md">MiMo microkernel design</a>.</strong> Read as a contrast in an OpenCode derivative: programmatic execution is added to a broad conventional tool/session chassis instead of becoming the single primary interface.</li>
+<li><strong><a href="https://github.com/earendil-works/pi/blob/581d75a89cea21e50d6a26df840352f94427f633/packages/coding-agent/docs/security.md">Pi extension security</a>.</strong> Close with the lineage baseline’s explicit trusted-process model. Neither a REPL, QuickJS, nor an in-process extension runner is automatically a security boundary.</li>
+</ol>
+<p><strong>Compare:</strong> fixed tool-schema breadth, code composition power, policy granularity, reconstructability, and the authority of persistent state.</p>
+<h2 id="route-4-capabilities-permission-approval-and-containment">Route 4: capabilities, permission, approval, and containment<a class="headerlink" href="#route-4-capabilities-permission-approval-and-containment" title="Permanent link">&para;</a></h2>
+<p><strong>What this route answers:</strong> Which layer says an action should run, which human settles uncertainty, and which operating-system mechanism constrains it?</p>
+<ol>
+<li><strong><a href="https://github.com/openai/codex/blob/902bd9e06b3ecb32cbf7f8e64cd23b956be3e7fe/codex-rs/core/src/tools/router.rs">Codex tool router</a>.</strong> Start with capability-name-to-handler dispatch. It establishes the operation before policy or sandboxing changes how it runs.</li>
+<li><strong><a href="https://github.com/openai/codex/blob/902bd9e06b3ecb32cbf7f8e64cd23b956be3e7fe/codex-rs/core/src/tools/orchestrator.rs">Codex tool orchestrator</a> and <a href="https://github.com/openai/codex/blob/902bd9e06b3ecb32cbf7f8e64cd23b956be3e7fe/codex-rs/core/src/tools/sandboxing.rs">sandbox lowering</a>.</strong> The first coordinates approval/retry/execution; the second turns policy into a concrete execution environment. Read together to keep authorization and containment separate.</li>
+<li><strong><a href="https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/packages/core/tools/src/index.ts">DeepSeek tool pipeline</a>.</strong> Pre-hooks, monotonic guards, around-execute wrappers, finalization, and observers show how a plugin system distributes policy without losing an ordered pipeline.</li>
+<li><strong><a href="https://github.com/xai-org/grok-build/blob/e5fd4816d43260c15ba785f103990c1ed6cea230/crates/codegen/xai-grok-workspace/src/permission/gate_preflight.rs">Grok preflight</a> → <a href="https://github.com/xai-org/grok-build/blob/e5fd4816d43260c15ba785f103990c1ed6cea230/crates/codegen/xai-grok-workspace/src/permission/manager/request_classification.rs">classification state</a>.</strong> This pair exposes direct policy, shell inspection, typed classification, rule resolution, automated judgment, and human escalation as stages with provenance.</li>
+<li><strong><a href="https://github.com/anomalyco/opencode/blob/cc4b45612974f735ddec46009ede07729511fba4/packages/opencode/src/permission/index.ts">OpenCode permission engine</a>.</strong> The last matching wildcard rule and deferred <code>ask</code> decision are concise enough to simulate. Notice that an allowed shell process is not thereby contained.</li>
+<li><strong><a href="https://github.com/ThinkInAIXYZ/deepchat/blob/aa129db04f1b3319276480682460e51458b84558/src/main/tool/permission/toolPermissionBroker.ts">DeepChat permission broker</a>.</strong> Operation identity includes source and binding data so model and MCP-app requests can share core-owned adjudication without being confused.</li>
+</ol>
+<p><strong>You should now be able to label separately:</strong> capability declaration, policy rule, automated classification, human approval, executor, and sandbox.</p>
+<h2 id="route-5-durable-facts-live-events-and-restart-truth">Route 5: durable facts, live events, and restart truth<a class="headerlink" href="#route-5-durable-facts-live-events-and-restart-truth" title="Permanent link">&para;</a></h2>
+<p><strong>What this route answers:</strong> After a crash, which record can reconstruct model input, effect state, or only the user-visible transcript?</p>
+<ol>
+<li><strong><a href="https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/packages/core/session/src/index.ts">DeepSeek session core</a> and <a href="https://github.com/deepseek-ai/deepseek-harness/blob/47f943859bef60e4160492346772ded9b24f765a/packages/core/session/src/surface.ts">surface</a>.</strong> These implement append-only facts and the validated model-visible projection. Start with the strongest “request reconstruction” claim.</li>
+<li><strong><a href="https://github.com/ThinkInAIXYZ/deepchat/blob/aa129db04f1b3319276480682460e51458b84558/docs/architecture/tape-system.md">DeepChat Tape architecture</a>.</strong> This explains context facts, attempt lineage, contracts, execution journal, and projections before the code introduces transaction detail.</li>
+<li><strong><a href="https://github.com/ThinkInAIXYZ/deepchat/blob/aa129db04f1b3319276480682460e51458b84558/src/main/tape/application/executionJournalService.ts">DeepChat execution journal</a> and <a href="https://github.com/ThinkInAIXYZ/deepchat/blob/aa129db04f1b3319276480682460e51458b84558/src/main/agent/deepchat/runtime/deepChatLoopRunner.ts">loop runner</a>.</strong> Follow prerequisites, idempotent repeats, collision detection, and fact-before-projection/effect ordering. This proves Tape is more than logging.</li>
+<li><strong><a href="https://github.com/openai/codex/blob/902bd9e06b3ecb32cbf7f8e64cd23b956be3e7fe/codex-rs/rollout/src/recorder.rs">Codex rollout recorder</a>.</strong> Compare a governed thread’s durable event record with the two evidence-first designs above.</li>
+<li><strong><a href="https://github.com/KunAgent/Kun/blob/1377249652cef30f9f7b777f8f6111fd6ac70fc9/kun/src/services/runtime-event-recorder.ts">Kun event recorder</a> → <a href="https://github.com/KunAgent/Kun/blob/1377249652cef30f9f7b777f8f6111fd6ac70fc9/kun/src/server/routes/events.ts">SSE route</a> → <a href="https://github.com/KunAgent/Kun/blob/1377249652cef30f9f7b777f8f6111fd6ac70fc9/kun/src/domain/runtime-event-reducer.ts">reducer</a>.</strong> This complete commit/replay/project path shows how a client reconnects without becoming the authority.</li>
+<li><strong><a href="https://github.com/op7418/CodePilot/blob/891f8e89e15417ce8bbda2f07da1f1ecc6e5064c/src/lib/chat-collect-stream-response.ts">CodePilot stream collector</a> and <a href="https://github.com/op7418/CodePilot/blob/891f8e89e15417ce8bbda2f07da1f1ecc6e5064c/src/lib/file-checkpoint.ts">file rewind</a>.</strong> These deliberately end the route with a layered pragmatic model: partial assistant rows are durable, engine refs vary, and file rewind is in memory. Do not use <code>run-checkpoint.ts</code> as durability evidence; it supplies UI banners.</li>
+</ol>
+<p><strong>Compare:</strong> exact model-request reconstruction, effect-journal recovery, semantic client replay, and partial transcript recovery. They are four different promises.</p>
+<h2 id="route-6-provider-normalization-and-client-independence">Route 6: provider normalization and client independence<a class="headerlink" href="#route-6-provider-normalization-and-client-independence" title="Permanent link">&para;</a></h2>
+<p><strong>What this route answers:</strong> What exactly is held stable when providers, engines, or clients change?</p>
+<ol>
+<li><strong><a href="https://github.com/earendil-works/pi/tree/581d75a89cea21e50d6a26df840352f94427f633/packages/ai">Pi unified model package</a>.</strong> This is provider normalization near the model API. Its consumers still own the session and product.</li>
+<li><strong><a href="https://github.com/xai-org/grok-build/blob/e5fd4816d43260c15ba785f103990c1ed6cea230/crates/codegen/xai-grok-sampler/src/lib.rs">Grok sampler overview</a> and <a href="https://github.com/xai-org/grok-build/blob/e5fd4816d43260c15ba785f103990c1ed6cea230/crates/codegen/xai-grok-sampler/src/events.rs">events</a>.</strong> Responses, Messages, and Chat Completions streams become a common sampling vocabulary before entering session orchestration. Look for provider-specific leakage.</li>
+<li><strong><a href="https://github.com/MoonshotAI/kimi-code/blob/5912d4c7d19d68975e85b007976b1bef59edae5c/packages/node-sdk/src/kimi-harness.ts">Kimi SDK façade</a>.</strong> This stabilizes clients while v1 and v2 engines coexist. Read its comments and then, optionally, the large v2 adapter to see compatibility cost.</li>
+<li><strong><a href="https://github.com/anomalyco/opencode/blob/cc4b45612974f735ddec46009ede07729511fba4/packages/opencode/src/server/routes/instance/httpapi/handlers/session.ts">OpenCode session HTTP handler</a> and <a href="https://github.com/anomalyco/opencode/blob/cc4b45612974f735ddec46009ede07729511fba4/packages/opencode/src/server/routes/instance/httpapi/handlers/event.ts">event handler</a>.</strong> These hold a session service stable for several clients rather than holding a provider call stable for one loop.</li>
+<li><strong><a href="https://github.com/op7418/CodePilot/blob/891f8e89e15417ce8bbda2f07da1f1ecc6e5064c/src/lib/runtime/types.ts">CodePilot runtime contract</a> and <a href="https://github.com/op7418/CodePilot/blob/891f8e89e15417ce8bbda2f07da1f1ecc6e5064c/src/lib/runtime/contract.ts">SSE contract</a>.</strong> The intentionally thin engine interface plus UI-shaped events reveal what a product shell chooses not to normalize.</li>
+<li><strong><a href="https://github.com/get-bb/bb/blob/596aab4298e6d1b1c3c1a31c24d915c9f9e30bef/packages/agent-runtime/src/provider-adapter.ts">bb provider adapter</a>.</strong> This final boundary wraps entire foreign provider processes. Dual bb/provider thread identities show why outer normalization is not equivalent to a shared inner model API.</li>
+</ol>
+<p><strong>Compare:</strong> provider API, session service, engine stream, and provider process. Each is a different “replaceable backend.”</p>
+<h2 id="route-7-long-horizon-continuity-and-mutable-harness-state">Route 7: long-horizon continuity and mutable harness state<a class="headerlink" href="#route-7-long-horizon-continuity-and-mutable-harness-state" title="Permanent link">&para;</a></h2>
+<p><strong>What this route answers:</strong> What survives a context window, a process restart, or a completed task—and who decides what survives?</p>
+<ol>
+<li><strong><a href="https://github.com/earendil-works/pi/blob/581d75a89cea21e50d6a26df840352f94427f633/packages/coding-agent/docs/session-format.md">Pi session format</a> → <a href="https://github.com/earendil-works/pi/blob/581d75a89cea21e50d6a26df840352f94427f633/packages/coding-agent/docs/compaction.md">compaction</a>.</strong> Begin with an append-oriented entry tree and summary-plus-tail model. This is the conventional transcript-derived baseline.</li>
+<li><strong><a href="https://github.com/MoonshotAI/kimi-code/blob/5912d4c7d19d68975e85b007976b1bef59edae5c/packages/agent-core-v2/src/agent/fullCompaction/fullCompactionService.ts">Kimi full compaction</a> and <a href="https://github.com/MoonshotAI/kimi-code/blob/5912d4c7d19d68975e85b007976b1bef59edae5c/packages/agent-core-v2/src/agent/undo/undoService.ts">undo</a>.</strong> These services make overflow recovery and reversibility separate, with a quiescent checkpoint boundary. Read to see what “undo” cannot cross.</li>
+<li><strong><a href="https://github.com/XiaomiMiMo/MiMo-Code/blob/42dcbf34f6b2be012d66bb54adf3d0d7795b83d9/packages/opencode/src/memory/service.ts">MiMo memory</a> and <a href="https://github.com/XiaomiMiMo/MiMo-Code/blob/42dcbf34f6b2be012d66bb54adf3d0d7795b83d9/packages/opencode/src/session/boundary.ts">session boundary</a>.</strong> These are additions to OpenCode, so isolate the new state from inherited session machinery. Ask how selections are sourced, updated, and reintroduced.</li>
+<li><strong><a href="https://github.com/PrimeIntellect-ai/prime-agent/blob/7787f07415d843b9a800f6a4720e0c739bd608e5/packages/coding-agent/src/core/refinement/refinement.ts">Prime refinement</a> and <a href="https://github.com/PrimeIntellect-ai/prime-agent/blob/7787f07415d843b9a800f6a4720e0c739bd608e5/prime-agent-runtime/src/rlm/harness.py">harness API</a>.</strong> Translate “self-improving” into concrete supplemental-state CRUD, conflict checks, atomic save, snapshots, and rollback. This is a mechanism, not proof of improvement.</li>
+<li><strong><a href="https://github.com/PrimeIntellect-ai/prime-agent/blob/7787f07415d843b9a800f6a4720e0c739bd608e5/packages/coding-agent/docs/daemon.md">Prime daemon</a>.</strong> Kernel and child recovery, schedules, goals, leases, and mutation journals show that long horizon also means operational ownership after the UI detaches.</li>
+</ol>
+<p><strong>Compare:</strong> transcript summaries, selected memory, executable kernel state, mutable supplemental prompts, and background process state. Record which is model-visible and which can be rolled back.</p>
+<h2 id="route-8-child-agents-and-outer-supervision">Route 8: child agents and outer supervision<a class="headerlink" href="#route-8-child-agents-and-outer-supervision" title="Permanent link">&para;</a></h2>
+<p><strong>What this route answers:</strong> Who owns a child’s lifetime, context, permissions, output, and cancellation—and how does that differ from supervising a foreign process?</p>
+<ol>
+<li><strong><a href="https://github.com/openai/codex/blob/902bd9e06b3ecb32cbf7f8e64cd23b956be3e7fe/codex-rs/core/src/tools/handlers/multi_agents/spawn.rs">Codex spawn handler</a>.</strong> This creates a child inside the same harness’s typed protocol. Note the parent/session identities carried into the operation.</li>
+<li><strong><a href="https://github.com/ThinkInAIXYZ/deepchat/blob/aa129db04f1b3319276480682460e51458b84558/docs/architecture/agent-system.md">DeepChat agent-system guide</a>.</strong> Read its Session/instance/Run and child facets to see how a desktop core preserves backend and temporal identity.</li>
+<li><strong><a href="https://github.com/PrimeIntellect-ai/prime-agent/blob/7787f07415d843b9a800f6a4720e0c739bd608e5/packages/coding-agent/docs/rlm-runtime.md">Prime RLM runtime guide</a>.</strong> Children are independent sessions admitted from Python; communication and usage are explicit. This is not a synchronous function call despite its programming-language surface.</li>
+<li><strong><a href="https://github.com/get-bb/bb/blob/596aab4298e6d1b1c3c1a31c24d915c9f9e30bef/docs/system-overview.md">bb system overview</a> and <a href="https://github.com/get-bb/bb/blob/596aab4298e6d1b1c3c1a31c24d915c9f9e30bef/apps/server/src/services/skills/builtin-skills/bb-cli/SKILL.md">CLI skill</a>.</strong> Manager and child threads live in a durable product control plane; agents can spawn, tell, and wait through the same API as users.</li>
+<li><strong><a href="https://github.com/multica-ai/multica/blob/5ed57170bcf4401b42a32c1253e05034652f1368/server/pkg/agent/agent.go">Multica adapter contract</a> → <a href="https://github.com/multica-ai/multica/blob/5ed57170bcf4401b42a32c1253e05034652f1368/server/internal/daemon/daemon.go">daemon</a>.</strong> The unit is now a complete foreign harness process. The daemon can manage task/process lifetime but cannot guarantee every inner request or effect.</li>
+</ol>
+<p><strong>Do not use</strong> Grok’s <code>subagent_prompts.rs</code> as lifecycle evidence: it resolves prompt templates and tool names, not child ownership, persistence, or cancellation.</p>
+<h2 id="route-9-human-interaction-across-surfaces">Route 9: human interaction across surfaces<a class="headerlink" href="#route-9-human-interaction-across-surfaces" title="Permanent link">&para;</a></h2>
+<p><strong>What this route answers:</strong> How does one semantic operation remain the same when viewed or approved from desktop, terminal, remote chat, or a reconnecting client?</p>
+<ol>
+<li><strong><a href="https://github.com/op7418/CodePilot/blob/891f8e89e15417ce8bbda2f07da1f1ecc6e5064c/src/lib/permission-registry.ts">CodePilot permission registry</a> → <a href="https://github.com/op7418/CodePilot/blob/891f8e89e15417ce8bbda2f07da1f1ecc6e5064c/src/lib/bridge/permission-broker.ts">remote broker</a>.</strong> Follow one operation ID from in-process waiter to a messaging-channel decision. The decision is shared even though channel trust and capability differ.</li>
+<li><strong><a href="https://github.com/ThinkInAIXYZ/deepchat/blob/aa129db04f1b3319276480682460e51458b84558/docs/architecture/session-management.md">DeepChat session management</a> and <a href="https://github.com/ThinkInAIXYZ/deepchat/blob/aa129db04f1b3319276480682460e51458b84558/src/main/agent/manager/agentManager.ts">agent manager</a>.</strong> Desktop, Remote, and Scheduler canonicalize input into core-owned sessions; native and ACP backends remain discriminated.</li>
+<li><strong><a href="https://github.com/KunAgent/Kun/blob/1377249652cef30f9f7b777f8f6111fd6ac70fc9/src/main/runtime/kun-adapter.ts">Kun desktop adapter</a> and <a href="https://github.com/KunAgent/Kun/blob/1377249652cef30f9f7b777f8f6111fd6ac70fc9/src/renderer/src/agent/kun-mapper.ts">renderer mapper</a>.</strong> Process discovery and DTO mapping should remain boundary work, while thread/policy/event semantics stay in <code>kun serve</code>.</li>
+<li><strong><a href="https://github.com/get-bb/bb/blob/596aab4298e6d1b1c3c1a31c24d915c9f9e30bef/packages/server-contract/src/api/threads.ts">bb server/client thread contract</a>.</strong> The surface now includes users and agents as operators over the same durable development objects, not only alternative human renderers.</li>
+</ol>
+<p><strong>Compare:</strong> where the actionable waiter lives, which record survives restart, and whether a new client can change policy semantics or only settle/project core-owned work.</p>
+<h2 id="route-10-task-workspace-and-process-control-planes">Route 10: task workspace and process control planes<a class="headerlink" href="#route-10-task-workspace-and-process-control-planes" title="Permanent link">&para;</a></h2>
+<p><strong>What this route answers:</strong> How do bb and Multica manage real workspaces and foreign runtimes without pretending to own their inner safety semantics?</p>
+<ol>
+<li><strong><a href="https://github.com/get-bb/bb/blob/596aab4298e6d1b1c3c1a31c24d915c9f9e30bef/docs/system-overview.md">bb system overview</a>.</strong> Identify server, host daemon, thread, environment, host, and provider process before reading implementation. These identities explain where work can survive or move.</li>
+<li><strong><a href="https://github.com/get-bb/bb/blob/596aab4298e6d1b1c3c1a31c24d915c9f9e30bef/apps/host-daemon/src/runtime-manager.ts">bb runtime manager</a> and <a href="https://github.com/get-bb/bb/blob/596aab4298e6d1b1c3c1a31c24d915c9f9e30bef/apps/host-daemon/src/event-sink.ts">event sink</a>.</strong> The first owns provider processes per environment; the second exposes the accepted crash-loss window before events reach durable server history.</li>
+<li><strong><a href="https://github.com/multica-ai/multica/blob/5ed57170bcf4401b42a32c1253e05034652f1368/server/pkg/agent/agent.go">Multica adapter contract</a>.</strong> Common messages, results, resume evidence, and provider-specific options define the anti-corruption boundary around foreign CLIs.</li>
+<li><strong><a href="https://github.com/multica-ai/multica/blob/5ed57170bcf4401b42a32c1253e05034652f1368/server/internal/daemon/execenv/execenv.go">Multica execution environment</a> and <a href="https://github.com/multica-ai/multica/blob/5ed57170bcf4401b42a32c1253e05034652f1368/server/internal/daemon/execenv/local_worktree.go">worktree preparation</a>.</strong> These files create directories/config homes, serialize in-place work, or use disposable Git worktrees whose result is a branch. They are workspace provenance mechanisms.</li>
+<li><strong><a href="https://github.com/multica-ai/multica/blob/5ed57170bcf4401b42a32c1253e05034652f1368/server/internal/daemon/execenv/isolation.go">Multica <code>isolation.go</code></a>.</strong> Read the implementation and name it precisely: a killable helper for environment preparation so a blocked filesystem call cannot resume writing. It is not the child harness’s OS sandbox.</li>
+<li><strong><a href="https://github.com/multica-ai/multica/blob/5ed57170bcf4401b42a32c1253e05034652f1368/server/internal/daemon/daemon.go">Multica daemon</a>.</strong> Search <code>handleTask</code>, <code>runTask</code>, <code>executeAndDrain</code>, and <code>shouldRetryWithFreshSession</code>. The outer lifecycle—claim, cancellation, watchdog, resume heuristic, usage, and settlement—becomes visible without reading the large file linearly.</li>
+</ol>
+<p><strong>Compare:</strong> bb’s durable development environment and agent-operable control plane with Multica’s task-worker settlement model. In both, the inner permission gate remains the foreign harness’s concern.</p>
+<h2 id="a-disciplined-way-to-take-notes">A disciplined way to take notes<a class="headerlink" href="#a-disciplined-way-to-take-notes" title="Permanent link">&para;</a></h2>
+<p>For every file above, record five facts:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Question</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Authority</td>
+<td>Which component is allowed to decide or mutate this state?</td>
+</tr>
+<tr>
+<td>Identity</td>
+<td>What ID remains stable across retry, reconnect, resume, or projection?</td>
+</tr>
+<tr>
+<td>Ordering</td>
+<td>What must be persisted, published, approved, or executed first?</td>
+</tr>
+<tr>
+<td>Recovery</td>
+<td>What evidence exists after the process dies, and what is merely live memory?</td>
+</tr>
+<tr>
+<td>Limit</td>
+<td>Which semantics remain outside this abstraction or scale?</td>
+</tr>
+</tbody>
+</table>
+<p>That notebook is more useful than a list of filenames. It also makes inaccuracies conspicuous: if a claimed checkpoint cannot be found in durable state, or an “actor owner” does not own the cited domain, return to the source and narrow the claim.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.top", "navigation.tracking", "search.highlight", "search.suggest", "content.code.copy", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

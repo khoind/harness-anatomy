@@ -1,0 +1,1856 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A source-linked atlas of agent harness architecture">
+      
+      
+      
+        <link rel="canonical" href="https://khoind.github.io/harness-anatomy/guide/anatomy/">
+      
+      
+        <link rel="prev" href="../walkthrough/">
+      
+      
+        <link rel="next" href="../design-map/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Common anatomy - Harness Anatomy</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/minimal-editorial-v4.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#181818" media="(prefers-color-scheme: dark)">
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#common-anatomy" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Harness Anatomy" class="md-header__button md-logo" aria-label="Harness Anatomy" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Harness Anatomy
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Common anatomy
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/khoind/harness-anatomy" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    khoind/harness-anatomy
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Harness Anatomy" class="md-nav__button md-logo" aria-label="Harness Anatomy" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Harness Anatomy
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/khoind/harness-anatomy" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    khoind/harness-anatomy
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Start here
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guide
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../walkthrough/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Worked walkthrough
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Common anatomy
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Common anatomy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#job-1-decide-what-the-model-sees" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Job 1: decide what the model sees
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#job-2-turn-proposals-into-controlled-effects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Job 2: turn proposals into controlled effects
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#job-3-remember-what-happened" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Job 3: remember what happened
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#job-4-manage-work-through-time-and-multiplicity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Job 4: manage work through time and multiplicity
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-nine-layer-reference-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The nine-layer reference map
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#one-interaction-several-lifetimes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        One interaction, several lifetimes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="One interaction, several lifetimes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#work-lifetimes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Work lifetimes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#world-and-state-lifetimes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        World and state lifetimes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-projects-operate-at-different-scales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The projects operate at different scales
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recurring-failure-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recurring failure modes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recurring failure modes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#boundaries-disappear" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Boundaries disappear
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#time-and-identity-blur" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Time and identity blur
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evidence-is-weaker-than-the-claim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evidence is weaker than the claim
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-the-common-anatomy-does-not-prove" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What the common anatomy does not prove
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../design-map/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Design map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../comparison/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Detailed comparisons
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../corpus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Corpus design and coverage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../research-method/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Research method
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reading-paths/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Source-reading paths
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Specimens
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Specimens
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../catalog/pi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../catalog/codex/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenAI Codex
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../catalog/deepchat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DeepChat
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../catalog/opencode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    OpenCode
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../catalog/kimi-code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kimi Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../catalog/grok-build/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Grok Build
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../catalog/deepseek-harness/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DeepSeek Harness
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../catalog/mimo-code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MiMo Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../catalog/prime-agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Prime Agent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../catalog/kun/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kun
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../catalog/codepilot/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CodePilot
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../catalog/bb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    bb
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../catalog/multica/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multica
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Advanced
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interface-lens/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Typed request/response interfaces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#job-1-decide-what-the-model-sees" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Job 1: decide what the model sees
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#job-2-turn-proposals-into-controlled-effects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Job 2: turn proposals into controlled effects
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#job-3-remember-what-happened" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Job 3: remember what happened
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#job-4-manage-work-through-time-and-multiplicity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Job 4: manage work through time and multiplicity
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-nine-layer-reference-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The nine-layer reference map
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#one-interaction-several-lifetimes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        One interaction, several lifetimes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="One interaction, several lifetimes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#work-lifetimes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Work lifetimes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#world-and-state-lifetimes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        World and state lifetimes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-projects-operate-at-different-scales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The projects operate at different scales
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recurring-failure-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recurring failure modes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recurring failure modes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#boundaries-disappear" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Boundaries disappear
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#time-and-identity-blur" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Time and identity blur
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evidence-is-weaker-than-the-claim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evidence is weaker than the claim
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-the-common-anatomy-does-not-prove" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What the common anatomy does not prove
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="common-anatomy">Common anatomy<a class="headerlink" href="#common-anatomy" title="Permanent link">&para;</a></h1>
+<p>Start with the <a href="../walkthrough/">worked walkthrough</a> if these terms are new.</p>
+<p>The inner harness can be understood as one repeated cycle:</p>
+<pre class="mermaid"><code>flowchart TD
+    I["Input or wake-up"] --&gt; C["Choose model-visible context"]
+    C --&gt; M["Ask the model"]
+    M --&gt;|terminal answer| Z["Record outcome and settle run"]
+    M --&gt;|effect request| P["Apply policy and approval"]
+    P --&gt;|allow| E["Execute inside containment"]
+    P --&gt;|deny| O["Record and return observation"]
+    E --&gt; O
+    O --&gt; C</code></pre>
+<p>The loop is small. Most engineering difficulty comes from making four jobs coherent around it:</p>
+<ol>
+<li>decide what the model sees;</li>
+<li>turn proposals into controlled effects;</li>
+<li>remember what happened;</li>
+<li>manage work through time, failure, and multiplicity.</li>
+</ol>
+<p>This page teaches those four jobs first, then gives the finer nine-layer reference used elsewhere in the atlas.</p>
+<h2 id="job-1-decide-what-the-model-sees">Job 1: decide what the model sees<a class="headerlink" href="#job-1-decide-what-the-model-sees" title="Permanent link">&para;</a></h2>
+<p>A session may contain a long history, files, instructions, memories, tool definitions, and earlier summaries. A model call can see only one finite request.</p>
+<p>The <strong>context builder</strong> chooses and renders that request. It may:</p>
+<ul>
+<li>combine system, project, and user instructions;</li>
+<li>select prior messages or durable facts;</li>
+<li>include file or workspace evidence;</li>
+<li>describe the capabilities available for this call;</li>
+<li>insert memory or attachments;</li>
+<li>compact older material under a token budget.</li>
+</ul>
+<p>The <strong>provider boundary</strong> then translates the rendered request into one provider’s wire format and translates streamed output back into the harness’s event vocabulary.</p>
+<p>These are separate concerns. Context construction decides <em>what is asked</em>. Provider adaptation decides <em>how the request is transmitted</em>. A provider retry should not silently rebuild context and pretend the request stayed identical.</p>
+<p>Questions to ask:</p>
+<ul>
+<li>Can the exact model-visible request be reconstructed?</li>
+<li>Which instructions and capabilities were active for this call?</li>
+<li>Does compaction preserve the evidence behind its summary?</li>
+<li>Which provider-specific facts are lost in the common protocol?</li>
+</ul>
+<h2 id="job-2-turn-proposals-into-controlled-effects">Job 2: turn proposals into controlled effects<a class="headerlink" href="#job-2-turn-proposals-into-controlled-effects" title="Permanent link">&para;</a></h2>
+<p>A model can propose a read, edit, command, browser action, human question, or child agent. The harness must turn that proposal into a named operation with a lifecycle.</p>
+<p>A mature effect path usually has distinct stages:</p>
+<div class="highlight"><pre><span></span><code>capability declaration
+→ structured request
+→ policy and approval
+→ execution inside containment
+→ recorded result
+→ model-visible observation
+</code></pre></div>
+<p>The stages answer different questions.</p>
+<ul>
+<li>A <strong>capability boundary</strong> defines what kinds of operations exist and their request/response shapes.</li>
+<li><strong>Policy</strong> decides whether an operation should proceed.</li>
+<li><strong>Approval</strong> records a human or delegated decision when policy asks.</li>
+<li><strong>Containment</strong> limits what the executing process can actually reach.</li>
+<li>The <strong>executor</strong> performs the effect and returns an outcome.</li>
+</ul>
+<p>Approval and sandboxing are not substitutes. “The user allowed this command” does not mean the command should receive unrestricted filesystem or network access. “The process is sandboxed” does not mean every action inside the sandbox was authorized.</p>
+<p>Questions to ask:</p>
+<ul>
+<li>Does one operation keep the same identity through approval, execution, retry, and result?</li>
+<li>Can external or plugin capabilities bypass checks that built-in tools pass through?</li>
+<li>Is denial represented as an observation the model can understand?</li>
+<li>What happens when the effect’s outcome is unknown after a crash?</li>
+</ul>
+<h2 id="job-3-remember-what-happened">Job 3: remember what happened<a class="headerlink" href="#job-3-remember-what-happened" title="Permanent link">&para;</a></h2>
+<p>A live interface is not durable truth.</p>
+<p>The harness may emit streaming events for responsiveness, but it also needs an authoritative record for recovery, audit, and later context construction. The record may be a session log, rollout, journal, Tape, database, or append-oriented file.</p>
+<p>Three concepts should remain distinct:</p>
+<div class="highlight"><pre><span></span><code>operation → fact/event → projection
+</code></pre></div>
+<ul>
+<li>A <strong>tool operation</strong> is one proposed effect and its lifecycle.</li>
+<li>A <strong>fact/event</strong> records an occurrence: requested, approved, started, completed, failed, denied, or cancelled.</li>
+<li>A <strong>projection</strong> is a view built from facts: a transcript, progress card, index row, notification, or reconstructed client state.</li>
+</ul>
+<p>The key rule is <strong>fact before projection</strong>. Record the authoritative occurrence before a renderer or remote client claims it happened. Then a client can crash and reconnect without changing the execution history.</p>
+<p>Not every durable store offers the same guarantee. A transcript may prove what was shown to a user. It may not prove the exact model request, the state of an external effect, or whether partial output had crossed a safe retry boundary.</p>
+<p>Questions to ask:</p>
+<ul>
+<li>What survives process death?</li>
+<li>Can the system distinguish durable facts from live coordination?</li>
+<li>Can views be rebuilt without replaying real effects?</li>
+<li>What evidence supports compaction, retry, resume, and audit claims?</li>
+</ul>
+<h2 id="job-4-manage-work-through-time-and-multiplicity">Job 4: manage work through time and multiplicity<a class="headerlink" href="#job-4-manage-work-through-time-and-multiplicity" title="Permanent link">&para;</a></h2>
+<p>One user request can involve several model calls, effects, retries, pauses, and children. Several clients may observe it. Several runs may share one session. Work may continue after a window closes.</p>
+<p>The harness therefore needs explicit lifetimes, cancellation scopes, and ownership.</p>
+<div class="highlight"><pre><span></span><code>session
+└── run
+    └── logical turn
+        └── provider request
+            └── physical attempt
+</code></pre></div>
+<ul>
+<li>The <strong>session</strong> is the long-lived conversation or task history.</li>
+<li>The <strong>run</strong> is the work admitted because of one input or wake-up.</li>
+<li>A <strong>logical turn</strong> is one accepted model response and the effects requested from it.</li>
+<li>A <strong>provider request</strong> is one fixed model payload.</li>
+<li>A <strong>physical attempt</strong> is one transmission of that payload.</li>
+</ul>
+<p>Orchestration adds children, queues, worktrees, schedules, and fleet workers. Operations add tracing, usage, watchdogs, replay, and deterministic tests.</p>
+<p>Questions to ask:</p>
+<ul>
+<li>Who owns each child and how does its result return?</li>
+<li>What exactly does cancellation stop?</li>
+<li>Can a run survive client disconnection?</li>
+<li>Which counters and failure state reset between runs?</li>
+<li>What is visible to an outer supervisor and what remains inside a foreign harness?</li>
+</ul>
+<h2 id="the-nine-layer-reference-map">The nine-layer reference map<a class="headerlink" href="#the-nine-layer-reference-map" title="Permanent link">&para;</a></h2>
+<p>The four jobs are the teaching model. The atlas uses nine layers when a more precise comparison is needed.</p>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Belongs mainly to</th>
+<th>The question it answers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1. Capability boundary</strong></td>
+<td>controlled effects</td>
+<td>What operations can the model request, and in what schema?</td>
+</tr>
+<tr>
+<td><strong>2. Provider boundary</strong></td>
+<td>model-visible context</td>
+<td>How are canonical requests and provider streams translated?</td>
+</tr>
+<tr>
+<td><strong>3. Context builder</strong></td>
+<td>model-visible context</td>
+<td>Which evidence, instructions, tools, and summaries enter this call?</td>
+</tr>
+<tr>
+<td><strong>4. Turn engine</strong></td>
+<td>time and lifecycle</td>
+<td>When does the loop continue, pause, retry, compact, or settle?</td>
+</tr>
+<tr>
+<td><strong>5. Policy boundary</strong></td>
+<td>controlled effects</td>
+<td>Should an operation run, who decides, and how is execution contained?</td>
+</tr>
+<tr>
+<td><strong>6. Durable state</strong></td>
+<td>recorded truth</td>
+<td>Which sessions, facts, outcomes, summaries, and links survive failure?</td>
+</tr>
+<tr>
+<td><strong>7. Event surface</strong></td>
+<td>recorded truth and clients</td>
+<td>How do TUI, GUI, RPC, ACP, JSONL, or remote clients observe the same work?</td>
+</tr>
+<tr>
+<td><strong>8. Orchestration</strong></td>
+<td>time and multiplicity</td>
+<td>How are children, queues, worktrees, schedules, or fleets supervised?</td>
+</tr>
+<tr>
+<td><strong>9. Evaluation and operations</strong></td>
+<td>time and evidence</td>
+<td>How are retries, usage, latency, traces, replay, and failure detected?</td>
+</tr>
+</tbody>
+</table>
+<p>A project need not expose nine modules. The list is a comparison frame. When two concerns share one object, ask whether they still have different authority, ordering, and lifetimes.</p>
+<h2 id="one-interaction-several-lifetimes">One interaction, several lifetimes<a class="headerlink" href="#one-interaction-several-lifetimes" title="Permanent link">&para;</a></h2>
+<p>Suppose you tell a coding agent:</p>
+<blockquote>
+<p>Rename <code>foo</code> to <code>bar</code> and update the tests.</p>
+</blockquote>
+<p>From the outside this looks like one action. Inside, several scopes begin and end at different times.</p>
+<h3 id="work-lifetimes">Work lifetimes<a class="headerlink" href="#work-lifetimes" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Work lifetime</th>
+<th>In the example</th>
+<th>What goes wrong if it is confused with its neighbors</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Session</td>
+<td>the continuing conversation with the coding agent</td>
+<td>cancelling one piece of work accidentally destroys the whole history</td>
+</tr>
+<tr>
+<td>Run</td>
+<td>all work caused by the rename instruction</td>
+<td>the next instruction inherits stale cancellation state or counters</td>
+</tr>
+<tr>
+<td>Logical turn</td>
+<td>one model response plus the effects it requests</td>
+<td>tool loops and retries get counted as new user instructions</td>
+</tr>
+<tr>
+<td>Provider request</td>
+<td>one exact model payload</td>
+<td>changed context is mislabeled as a retry of the same request</td>
+</tr>
+<tr>
+<td>Physical attempt</td>
+<td>one transmission of that payload</td>
+<td>latency, usage, and provider failures are counted incorrectly</td>
+</tr>
+</tbody>
+</table>
+<p>“Try again” can mean two different things. Sending identical bytes again creates another <strong>attempt</strong>. Rebuilding context creates a new <strong>request</strong>, even when the user instruction is unchanged.</p>
+<h3 id="world-and-state-lifetimes">World and state lifetimes<a class="headerlink" href="#world-and-state-lifetimes" title="Permanent link">&para;</a></h3>
+<p>Suppose the model asks to run the test suite.</p>
+<ul>
+<li>The <strong>tool operation</strong> is that proposed command, with one stable identity.</li>
+<li>A <strong>fact/event</strong> may record that it started and finished with exit code 1.</li>
+<li>A <strong>projection</strong> may show a red command card or terminal line.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>State lifetime</th>
+<th>In the example</th>
+<th>What goes wrong if it is confused with its neighbors</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tool operation</td>
+<td>“run the tests” with one stable call identity</td>
+<td>replay or transport retry executes the command twice</td>
+</tr>
+<tr>
+<td>Fact/event</td>
+<td>“tests finished with exit code 1”</td>
+<td>mutable interface state becomes the only audit trail</td>
+</tr>
+<tr>
+<td>Projection</td>
+<td>the terminal or GUI rendering of that result</td>
+<td>a rendering failure corrupts what the system believes happened</td>
+</tr>
+</tbody>
+</table>
+<p>Vocabulary varies. The names matter less than the separations. DeepChat states request/attempt identity most explicitly; Codex’s thread and rollout, Pi’s event sequence, Kimi Code’s event bus, DeepSeek’s event planes, and Kun’s event reducer expose neighboring parts of the same design space.</p>
+<h2 id="the-projects-operate-at-different-scales">The projects operate at different scales<a class="headerlink" href="#the-projects-operate-at-different-scales" title="Permanent link">&para;</a></h2>
+<p>The thirteen projects are not all trying to be the same thing. Before comparing features, ask what level of the system the project owns.</p>
+<ul>
+<li><strong>Pi</strong> is closest to a reusable agent engine. Its core loop can be embedded inside another product.</li>
+<li><strong>Codex, OpenCode, Grok Build, Kimi Code, DeepSeek Harness, MiMo Code, and Prime Agent</strong> are complete local harnesses. They combine the loop with tools, persistence, policy, and one or more interfaces.</li>
+<li><strong>Kun, DeepChat, and CodePilot</strong> extend further into desktop and product concerns such as durable GUI state, remote interaction, and several ways to control one agent.</li>
+<li><strong>bb</strong> is an agent development environment and control plane around provider harnesses. Its threads, hosts, workspaces, and plugins are product authority; the provider still owns the inner model loop.</li>
+<li><strong>Multica</strong> sits outside independent agent programs. It starts and supervises them rather than calling the underlying model API itself.</li>
+</ul>
+<p>Scale changes what a project can prove.</p>
+<p>A strong Multica watchdog is evidence about supervising a process. It is not evidence about representing one model turn. A convenient desktop “collapse output” state is evidence about presentation. It need not belong in the core execution model.</p>
+<p>The practical rule is: <strong>compare projects only at the level where their responsibilities overlap.</strong></p>
+<h2 id="recurring-failure-modes">Recurring failure modes<a class="headerlink" href="#recurring-failure-modes" title="Permanent link">&para;</a></h2>
+<h3 id="boundaries-disappear">Boundaries disappear<a class="headerlink" href="#boundaries-disappear" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Callback soup:</strong> permissions, questions, and tool progress bypass the event protocol.</li>
+<li><strong>Policy collapsed into tools:</strong> each handler reinvents checks while external capabilities bypass them.</li>
+<li><strong>UI owns execution:</strong> headless, remote, and desktop clients develop different loops.</li>
+</ul>
+<h3 id="time-and-identity-blur">Time and identity blur<a class="headerlink" href="#time-and-identity-blur" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Retry without identity:</strong> a changed payload is called the same request, or an effect runs twice.</li>
+<li><strong>One giant agent state:</strong> session, run, request, attempt, operation, and projection lifetimes bleed together.</li>
+<li><strong>Cancellation without scope:</strong> “stop” sometimes kills a command and sometimes destroys a session.</li>
+</ul>
+<h3 id="evidence-is-weaker-than-the-claim">Evidence is weaker than the claim<a class="headerlink" href="#evidence-is-weaker-than-the-claim" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Mutable transcript as truth:</strong> the screen says “done,” but no authoritative completion fact exists.</li>
+<li><strong>Compaction as destructive rewrite:</strong> a summary survives while its evidence and provenance disappear.</li>
+<li><strong>Projection mistaken for recovery:</strong> a product can redraw a transcript but cannot determine what the model saw or whether an effect committed.</li>
+<li><strong>Feature inheritance mistaken for convergence:</strong> MiMo Code derives from OpenCode and Prime Agent from Pi; inherited mechanisms are one lineage, not independent votes.</li>
+</ul>
+<h2 id="what-the-common-anatomy-does-not-prove">What the common anatomy does not prove<a class="headerlink" href="#what-the-common-anatomy-does-not-prove" title="Permanent link">&para;</a></h2>
+<p>This page is an <strong>inference</strong> over the corpus, not a standard every harness must implement. A distinction earns its place only when it predicts a failure, enables a useful comparison, or supports a required guarantee.</p>
+<p>Use <a href="../design-map/">A map of the harness design space</a> to see how the specimens answer these questions differently. Use the <a href="../research-method/">research method</a> before turning a plausible boundary into a recommendation.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.top", "navigation.tracking", "search.highlight", "search.suggest", "content.code.copy", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

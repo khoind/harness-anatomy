@@ -94,14 +94,22 @@ The key idea is that the screen is not the event. If a renderer crashes after th
 
 Vocabulary varies across projects. The names matter less than the separations. DeepChat states the request/attempt distinction most explicitly; Codex’s thread/rollout split, Pi’s event sequence, Kimi Code’s event bus, and Kun’s runtime-event reducer expose adjacent parts of the same design.
 
-## Four architecture families, not one leaderboard
+## The projects operate at different scales
 
-- **Library core:** Pi makes the loop, messages, capabilities, and events separable from the coding product.
-- **Complete local harness:** Codex, OpenCode, Grok Build, Kimi Code, and MiMo Code own the loop and one or more user or protocol surfaces.
-- **Desktop interaction system:** Kun, DeepChat, and CodePilot add persistent GUI state, remote channels, computer use, and human interaction around a loop.
-- **Meta-harness:** Multica normally drives another agent process. Its model-facing boundary is an agent-command-line adapter, not a model API.
+The ten projects are not all trying to be the same kind of thing. Before comparing features, first ask **what level of the system the project is responsible for**.
 
-A feature in Multica is evidence about supervising agents; it is not automatically evidence about the proper shape of an inner turn engine. A renderer convenience in a desktop client should likewise not become part of a model-facing semantic core merely because it is visible.
+- **Pi** is closest to a reusable agent engine. Its core loop can be embedded inside another product.
+- **Codex, OpenCode, Grok Build, Kimi Code, and MiMo Code** are complete coding-agent systems. They combine the loop with tools, persistence, policy, and one or more user-facing or programmatic interfaces.
+- **Kun, DeepChat, and CodePilot** go further into desktop-product concerns such as persistent GUI state, remote interaction, computer use, and multiple ways for humans to interact with the same agent.
+- **Multica** sits outside other agents. It starts and supervises coding-agent programs such as Codex or OpenCode rather than running the underlying language model loop itself.
+
+This difference in scale changes what each project can teach us.
+
+For example, suppose Multica has a good mechanism for restarting a stuck Codex process. That is useful evidence about **supervising an agent process**. It does not tell us how Codex should represent a single model turn internally.
+
+Likewise, suppose a desktop app has a convenient “collapse tool output” button. That may be a good interface feature, but it does not follow that “collapsed” and “expanded” should become states in the agent’s core execution model. The core should usually record what happened; the interface decides how to display it.
+
+The practical rule is simple: **compare projects at the level where their responsibility overlaps.** Use Multica to study supervision, Pi to study the small inner loop, and desktop systems to study how one underlying agent is presented and controlled through richer interfaces.
 
 ## Recurring failure modes
 

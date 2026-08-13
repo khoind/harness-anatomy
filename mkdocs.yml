@@ -1,0 +1,71 @@
+site_name: Harness Anatomy
+site_description: A source-linked atlas of agent harness architecture
+site_url: https://khoind.github.io/harness-anatomy/
+repo_url: https://github.com/khoind/harness-anatomy
+repo_name: khoind/harness-anatomy
+edit_uri: edit/main/
+
+docs_dir: site-docs
+site_dir: harness-anatomy-site
+
+nav:
+  - Start here: index.md
+  - Guide:
+      - Worked walkthrough: guide/walkthrough.md
+      - Common anatomy: guide/anatomy.md
+      - Comparison by question: guide/comparison.md
+      - Research method: guide/research-method.md
+      - Source-reading paths: guide/reading-paths.md
+      - Glossary: guide/glossary.md
+  - Specimens:
+      - Pi: catalog/pi.md
+      - OpenAI Codex: catalog/codex.md
+      - DeepChat: catalog/deepchat.md
+      - OpenCode: catalog/opencode.md
+      - Kimi Code: catalog/kimi-code.md
+      - Grok Build: catalog/grok-build.md
+      - MiMo Code: catalog/mimo-code.md
+      - Kun: catalog/kun.md
+      - CodePilot: catalog/codepilot.md
+      - Multica: catalog/multica.md
+  - Advanced:
+      - Typed request/response interfaces: guide/interface-lens.md
+
+theme:
+  name: material
+  features:
+    - navigation.sections
+    - navigation.top
+    - navigation.tracking
+    - search.highlight
+    - search.suggest
+    - content.code.copy
+    - toc.follow
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format

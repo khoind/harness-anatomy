@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "reviewed_at": "2026-08-13",
+  "projects": [
+    {
+      "slug": "codepilot",
+      "name": "CodePilot",
+      "repository": "op7418/CodePilot",
+      "url": "https://github.com/op7418/CodePilot",
+      "branch": "main",
+      "reviewed_ref": "891f8e89e15417ce8bbda2f07da1f1ecc6e5064c",
+      "license": "Business Source License 1.1; Apache-2.0 on 2029-03-16",
+      "source_class": "source-available",
+      "mapping_status": "probable; screenshot label is ambiguous without the original hyperlink",
+      "role": "desktop multi-model agent and remote interaction shell",
+      "language": "TypeScript",
+      "entrypoints": [
+        {"concern": "architecture", "path": "ARCHITECTURE.md"},
+        {"concern": "agent loop", "path": "src/lib/agent-loop.ts"},
+        {"concern": "tool set", "path": "src/lib/agent-tools.ts"},
+        {"concern": "provider resolution", "path": "src/lib/provider-resolver.ts"},
+        {"concern": "permissions", "path": "src/lib/permission-checker.ts"},
+        {"concern": "remote approval", "path": "src/lib/bridge/permission-broker.ts"},
+        {"concern": "checkpoints", "path": "src/lib/run-checkpoint.ts"}
+      ]
+    },
+    {
+      "slug": "codex",
+      "name": "OpenAI Codex",
+      "repository": "openai/codex",
+      "url": "https://github.com/openai/codex",
+      "branch": "main",
+      "reviewed_ref": "902bd9e06b3ecb32cbf7f8e64cd23b956be3e7fe",
+      "license": "Apache-2.0",
+      "source_class": "open-source",
+      "role": "local coding agent, protocol server, and multi-agent runtime",
+      "language": "Rust",
+      "entrypoints": [
+        {"concern": "session", "path": "codex-rs/core/src/session/session.rs"},
+        {"concern": "turn loop", "path": "codex-rs/core/src/session/turn.rs"},
+        {"concern": "context", "path": "codex-rs/core/src/context_manager/mod.rs"},
+        {"concern": "tool routing", "path": "codex-rs/core/src/tools/router.rs"},
+        {"concern": "approval and sandbox orchestration", "path": "codex-rs/core/src/tools/orchestrator.rs"},
+        {"concern": "durable rollout", "path": "codex-rs/rollout/src/recorder.rs"},
+        {"concern": "subagent spawn", "path": "codex-rs/core/src/tools/handlers/multi_agents/spawn.rs"},
+        {"concern": "wire protocol", "path": "codex-rs/protocol/src/protocol.rs"}
+      ]
+    },
+    {
+      "slug": "deepchat",
+      "name": "DeepChat",
+      "repository": "ThinkInAIXYZ/deepchat",
+      "url": "https://github.com/ThinkInAIXYZ/deepchat",
+      "branch": "dev",
+      "reviewed_ref": "aa129db04f1b3319276480682460e51458b84558",
+      "license": "Apache-2.0",
+      "source_class": "open-source",
+      "role": "local-first desktop agent platform with native and ACP backends",
+      "language": "TypeScript",
+      "entrypoints": [
+        {"concern": "architecture", "path": "docs/architecture/agent-system.md"},
+        {"concern": "loop", "path": "src/main/agent/deepchat/loop/loopRun.ts"},
+        {"concern": "loop ports", "path": "src/main/agent/deepchat/loop/ports.ts"},
+        {"concern": "durable tape", "path": "src/main/session/data/tape.ts"},
+        {"concern": "event contract", "path": "src/shared/types/core/agent-events.ts"},
+        {"concern": "tools", "path": "docs/architecture/tool-system.md"},
+        {"concern": "permissions", "path": "src/main/tool/permission/toolPermissionBroker.ts"}
+      ]
+    },
+    {
+      "slug": "grok-build",
+      "name": "Grok Build",
+      "repository": "xai-org/grok-build",
+      "url": "https://github.com/xai-org/grok-build",
+      "branch": "main",
+      "reviewed_ref": "e5fd4816d43260c15ba785f103990c1ed6cea230",
+      "license": "Apache-2.0",
+      "source_class": "open-source",
+      "role": "terminal coding agent, TUI, headless runner, and ACP server",
+      "language": "Rust",
+      "entrypoints": [
+        {"concern": "agent overview", "path": "crates/codegen/xai-grok-agent/README.md"},
+        {"concern": "agent", "path": "crates/codegen/xai-grok-agent/src/agent.rs"},
+        {"concern": "tool bridge", "path": "crates/codegen/xai-grok-tools/src/bridge.rs"},
+        {"concern": "permissions", "path": "crates/codegen/xai-grok-workspace/src/permission/manager/request_classification.rs"},
+        {"concern": "session actor", "path": "crates/codegen/xai-chat-state/src/actor/mod.rs"},
+        {"concern": "subagent prompts", "path": "crates/codegen/xai-grok-agent/src/prompt/subagent_prompts.rs"}
+      ]
+    },
+    {
+      "slug": "kimi-code",
+      "name": "Kimi Code",
+      "repository": "MoonshotAI/kimi-code",
+      "url": "https://github.com/MoonshotAI/kimi-code",
+      "branch": "main",
+      "reviewed_ref": "5912d4c7d19d68975e85b007976b1bef59edae5c",
+      "license": "MIT",
+      "source_class": "open-source",
+      "role": "terminal and IDE coding-agent platform",
+      "language": "TypeScript",
+      "entrypoints": [
+        {"concern": "legacy loop guide", "path": "packages/agent-core/src/loop/README.md"},
+        {"concern": "v2 step requests", "path": "packages/agent-core-v2/src/agent/loop/stepRequest.ts"},
+        {"concern": "continuation", "path": "packages/agent-core-v2/src/agent/loop/loopContinuationService.ts"},
+        {"concern": "tool registry", "path": "packages/agent-core-v2/src/agent/toolRegistry/toolRegistry.ts"},
+        {"concern": "events", "path": "packages/agent-core-v2/src/app/event/eventBus.ts"},
+        {"concern": "approvals", "path": "packages/protocol/src/approval.ts"},
+        {"concern": "compaction", "path": "packages/agent-core-v2/src/agent/fullCompaction/fullCompactionService.ts"},
+        {"concern": "undo", "path": "packages/agent-core-v2/src/agent/undo/undoService.ts"}
+      ]
+    },
+    {
+      "slug": "kun",
+      "name": "Kun",
+      "repository": "KunAgent/Kun",
+      "url": "https://github.com/KunAgent/Kun",
+      "branch": "master",
+      "reviewed_ref": "1377249652cef30f9f7b777f8f6111fd6ac70fc9",
+      "license": "PolyForm Noncommercial 1.0.0",
+      "source_class": "source-available",
+      "role": "local-first desktop agent with browser/computer use and agent graph",
+      "language": "TypeScript",
+      "entrypoints": [
+        {"concern": "agent loop", "path": "kun/src/loop/agent-loop.ts"},
+        {"concern": "model protocol", "path": "kun/src/ports/model-client.ts"},
+        {"concern": "tool host", "path": "kun/src/ports/tool-host.ts"},
+        {"concern": "approval policy", "path": "kun/src/contracts/policy.ts"},
+        {"concern": "context compaction", "path": "kun/src/loop/context-compactor.ts"},
+        {"concern": "thread persistence", "path": "kun/src/adapters/file/file-thread-store.ts"},
+        {"concern": "semantic events", "path": "kun/src/services/runtime-event-recorder.ts"},
+        {"concern": "extension boundary", "path": "docs/extensions/architecture.md"}
+      ]
+    },
+    {
+      "slug": "mimo-code",
+      "name": "MiMo Code",
+      "repository": "XiaomiMiMo/MiMo-Code",
+      "url": "https://github.com/XiaomiMiMo/MiMo-Code",
+      "branch": "main",
+      "reviewed_ref": "42dcbf34f6b2be012d66bb54adf3d0d7795b83d9",
+      "license": "MIT source license plus USE_RESTRICTIONS.md",
+      "source_class": "open-source-with-separate-use-restrictions",
+      "role": "long-horizon OpenCode derivative with memory, actors, and evolution",
+      "language": "TypeScript",
+      "lineage": "derived from OpenCode",
+      "entrypoints": [
+        {"concern": "loop", "path": "packages/opencode/src/session/prompt.ts"},
+        {"concern": "processor", "path": "packages/opencode/src/session/processor.ts"},
+        {"concern": "tools", "path": "packages/opencode/src/tool/registry.ts"},
+        {"concern": "permissions", "path": "packages/opencode/src/permission/index.ts"},
+        {"concern": "memory", "path": "packages/opencode/src/memory/service.ts"},
+        {"concern": "microkernel", "path": "docs/architecture/codex-microkernel-runtime.en.md"},
+        {"concern": "evolution skill", "path": "packages/opencode/src/skill/builtin/.bundle/evolve/SKILL.md"},
+        {"concern": "use terms", "path": "USE_RESTRICTIONS.md"}
+      ]
+    },
+    {
+      "slug": "multica",
+      "name": "Multica",
+      "repository": "multica-ai/multica",
+      "url": "https://github.com/multica-ai/multica",
+      "branch": "main",
+      "reviewed_ref": "5ed57170bcf4401b42a32c1253e05034652f1368",
+      "license": "Apache-2.0 text plus additional hosted-service, embedding, and branding conditions",
+      "source_class": "source-available",
+      "role": "fleet and task-management layer over external coding-agent runtimes",
+      "language": "Go and TypeScript",
+      "entrypoints": [
+        {"concern": "outer daemon loop", "path": "server/internal/daemon/daemon.go"},
+        {"concern": "runtime adapters", "path": "server/pkg/agent/agent.go"},
+        {"concern": "execution isolation", "path": "server/internal/daemon/execenv/isolation.go"},
+        {"concern": "runtime protocol", "path": "server/pkg/protocol/events.go"},
+        {"concern": "event bus", "path": "server/internal/events/bus.go"},
+        {"concern": "trace projection", "path": "packages/views/common/task-transcript/trace-event-presenter.ts"}
+      ]
+    },
+    {
+      "slug": "opencode",
+      "name": "OpenCode",
+      "repository": "anomalyco/opencode",
+      "url": "https://github.com/anomalyco/opencode",
+      "branch": "dev",
+      "reviewed_ref": "cc4b45612974f735ddec46009ede07729511fba4",
+      "license": "MIT",
+      "source_class": "open-source",
+      "role": "provider-agnostic client/server coding agent",
+      "language": "TypeScript",
+      "entrypoints": [
+        {"concern": "session prompt/loop", "path": "packages/opencode/src/session/prompt.ts"},
+        {"concern": "stream processor", "path": "packages/opencode/src/session/processor.ts"},
+        {"concern": "session tools", "path": "packages/opencode/src/session/tools.ts"},
+        {"concern": "tool registry", "path": "packages/core/src/tool/registry.ts"},
+        {"concern": "permissions", "path": "packages/opencode/src/permission/index.ts"},
+        {"concern": "compaction", "path": "packages/opencode/src/session/compaction.ts"},
+        {"concern": "session specification", "path": "specs/v2/session.md"}
+      ]
+    },
+    {
+      "slug": "pi",
+      "name": "Pi",
+      "aliases": ["pi-mono", "badlogic/pi-mono"],
+      "repository": "earendil-works/pi",
+      "url": "https://github.com/earendil-works/pi",
+      "branch": "main",
+      "reviewed_ref": "581d75a89cea21e50d6a26df840352f94427f633",
+      "license": "MIT",
+      "source_class": "open-source",
+      "role": "minimal agent toolkit and terminal coding agent",
+      "language": "TypeScript",
+      "entrypoints": [
+        {"concern": "loop", "path": "packages/agent/src/agent-loop.ts"},
+        {"concern": "stateful facade", "path": "packages/agent/src/agent.ts"},
+        {"concern": "event types", "path": "packages/agent/src/types.ts"},
+        {"concern": "coding session", "path": "packages/coding-agent/src/core/agent-session.ts"},
+        {"concern": "session persistence", "path": "packages/coding-agent/src/core/session-manager.ts"},
+        {"concern": "tool assembly", "path": "packages/coding-agent/src/core/tools/index.ts"},
+        {"concern": "extensions", "path": "packages/coding-agent/src/core/extensions/runner.ts"},
+        {"concern": "compaction", "path": "packages/coding-agent/docs/compaction.md"}
+      ]
+    }
+  ]
+}

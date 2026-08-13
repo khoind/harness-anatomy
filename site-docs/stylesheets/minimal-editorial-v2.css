@@ -133,11 +133,16 @@ pre {
 }
 
 .top-toc {
+  position: sticky;
+  top: 2.55rem;
+  z-index: 8;
   margin: -0.8rem 0 2rem;
   border: 1px solid var(--md-default-fg-color--lightest) !important;
-  border-radius: 0.45rem !important;
-  background: color-mix(in srgb, var(--md-default-fg-color) 4%, var(--md-default-bg-color)) !important;
+  border-radius: 0.3rem !important;
+  background: color-mix(in srgb, var(--md-default-bg-color) 96%, transparent) !important;
   box-shadow: none !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .top-toc summary {
@@ -257,6 +262,10 @@ pre {
 }
 
 @media screen and (max-width: 59.984375em) {
+  .top-toc {
+    top: 2.35rem;
+  }
+
   .md-main__inner {
     margin-top: 1.8rem;
   }
